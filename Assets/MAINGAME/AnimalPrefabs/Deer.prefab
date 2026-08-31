@@ -214,13 +214,13 @@ MonoBehaviour:
   player: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4096
   walkSpeed: 1.5
   runSpeed: 5
   walkPointRange: 20

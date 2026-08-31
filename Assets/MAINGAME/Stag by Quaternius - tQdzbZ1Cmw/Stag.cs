@@ -131,16 +131,20 @@ public class Stag : MonoBehaviour
     private void CheckForThreats()
     {
         if (currentState == AnimalState.Injured) return;
-
+        Debug.Log("Is this checking");
         Vector3 directionToPlayer = (player.position - raycastSource.position).normalized;
 
+        //Debug.Log($"Distance from player - {Vector3.Distance(player.position, transform.position)}");
+        Debug.Log($"Position of player - {player.position}");
         if (Vector3.Distance(player.position, transform.position) <= detectionRange)
         {
             float angleToPlayer = Vector3.Angle(raycastSource.forward, directionToPlayer);
-            if (angleToPlayer <= visualConeAngle / 2f)
+            Debug.Log("Inside a sphere");
+;            if (angleToPlayer <= visualConeAngle / 2f)
             {
                 if (!Physics.Raycast(raycastSource.position, directionToPlayer, raycastLength, obstacleLayer))
                 {
+                    Debug.Log("Raycast done");
                     if (currentState != AnimalState.Fleeing)
                     {
                         ChangeState(AnimalState.Fleeing);
