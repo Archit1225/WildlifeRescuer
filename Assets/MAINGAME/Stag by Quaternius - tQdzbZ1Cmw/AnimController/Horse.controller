@@ -289,7 +289,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Death
+  m_Name: Injured
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -303,7 +303,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4348485665485846014, guid: af43b141ff41be4459ebc8e49415415e, type: 3}
+  m_Motion: {fileID: 1245882690682072010, guid: af43b141ff41be4459ebc8e49415415e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

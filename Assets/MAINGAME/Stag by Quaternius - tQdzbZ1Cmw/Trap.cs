@@ -1,9 +1,11 @@
+using Autohand;
 using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
     public bool isActive = true;
     private Animator anim;
+    private GameObject crowbarPrefab;
 
     private void Awake()
     {
@@ -17,7 +19,12 @@ public class Trap : MonoBehaviour
             TrapManager.Instance.RegisterTrap(this);
         }
     }
+    public void OnLeverPlaced()
+    {
+        Instantiate(crowbarPrefab, transform);
 
+        //Destroy the gameObj
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!isActive) return;

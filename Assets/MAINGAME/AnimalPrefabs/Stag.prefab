@@ -225,8 +225,10 @@ MonoBehaviour:
   fleeDistance: 20
   raycastLength: 8
   raycastSource: {fileID: 2986224561431156795}
+  trapStag: 1
   visualConeAngle: 120
   detectionRange: 10
+  trappedTrans: {fileID: 4842908181012068995}
   timeSpentIdlingOrEating: 3
 --- !u!195 &8600764752389718721
 NavMeshAgent:

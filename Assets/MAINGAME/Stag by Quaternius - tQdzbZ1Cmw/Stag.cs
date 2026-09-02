@@ -25,10 +25,12 @@ public class Stag : MonoBehaviour
     //Detection
     public float raycastLength = 8f;
     public Transform raycastSource;
+    public bool trapStag;
     public float visualConeAngle = 60f;
     public float detectionRange = 10f;
     private bool moveTowardsTrap = false;
     private Trap targetTrap;
+    public Transform trappedTrans;
 
     //States
     public enum AnimalState { Injured, Eating, Idle, Roaming, Fleeing, Attacking }
@@ -41,10 +43,14 @@ public class Stag : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = Camera.main.transform;
+        //player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         currentState = AnimalState.Idle;
+        //GameObject childWithTag = GetComponentInChildren<Transform>(true).CompareTag("Leg")
+            //? GetComponentInChildren<Transform>(true).gameObject : null;
+        //trappedTrans = childWithTag.transform;
 
         navAgent.speed = walkSpeed;
         canWalk = true;
@@ -90,16 +96,16 @@ public class Stag : MonoBehaviour
     {
         float random = Random.Range(0f, 1f);
 
-        if (random <= 0.3f)
+        if (random <= 0.3f && !trapStag)
         {
             ChangeState(AnimalState.Roaming);
         }
-        else if (random <= 0.6f)
+        else if (random <= 0.6f && !trapStag)
         {
             ChangeState(AnimalState.Eating);
             passiveTimer = timeSpentIdlingOrEating;
         }
-        else if (random <= 0.9f)
+        else if (random <= 0.9f && !trapStag)
         {
             ChangeState(AnimalState.Idle);
             passiveTimer = timeSpentIdlingOrEating;
@@ -229,6 +235,7 @@ public class Stag : MonoBehaviour
         canWalk = false;
         navAgent.isStopped = true;
         navAgent.Warp(trapTransform.position);
+        trapTransform.position = trappedTrans.position;
     }
 
     private void ChangeState(AnimalState newState)
