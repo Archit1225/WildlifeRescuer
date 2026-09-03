@@ -1,30 +1,24 @@
-using Autohand;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public class BearTrap : Trap // Inherits from the base Trap class
 {
-    public bool isActive = true;
     private Animator anim;
-    private GameObject crowbarPrefab;
+    public GameObject crowbarPrefab;
+    public GameObject placePoint;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
 
-    private void Start()
-    {
-        if (TrapManager.Instance != null)
-        {
-            TrapManager.Instance.RegisterTrap(this);
-        }
-    }
     public void OnLeverPlaced()
     {
-        Instantiate(crowbarPrefab, transform);
-
-        //Destroy the gameObj
+        Debug.Log("Trap disarmed");
+        TaskManager.Instance.CompleteTask(transform);
+        anim.Play("UnTrap");
+        Instantiate(crowbarPrefab, transform.position, transform.rotation);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isActive) return;
@@ -32,25 +26,17 @@ public class Trap : MonoBehaviour
         if (other.CompareTag("Animal") || other.CompareTag("Stone"))
         {
             isActive = false;
-
             if (anim != null) anim.Play("Trap");
 
             if (other.CompareTag("Animal"))
             {
+                placePoint.SetActive(true);
                 Stag stag = other.GetComponent<Stag>();
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);
                 }
             }
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (TrapManager.Instance != null)
-        {
-            TrapManager.Instance.UnregisterTrap(this);
         }
     }
 }
