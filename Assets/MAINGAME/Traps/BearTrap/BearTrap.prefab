@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7962543284444066232
 Transform:
   m_ObjectHideFlags: 0
@@ -52,13 +52,13 @@ MonoBehaviour:
   placedOffset: {fileID: 772589918278316881}
   placeRadius: 4.21
   radiusOffset: {x: 0, y: 0, z: 0}
-  parentOnPlace: 1
+  parentOnPlace: 0
   forcePlace: 1
   forceHandRelease: 1
   destroyObjectOnPlace: 1
   disableRigidbodyOnPlace: 0
   disableGrabOnPlace: 0
-  disablePlacePointOnPlace: 0
+  disablePlacePointOnPlace: 1
   makePlacedKinematic: 1
   placedJointLink: {fileID: 0}
   jointBreakForce: 1000
@@ -229,9 +229,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3630686291077643617}
   - component: {fileID: 8962238323364173952}
-  - component: {fileID: 5515468340467771134}
-  - component: {fileID: 5351614546556482813}
   - component: {fileID: 2403366795039582857}
+  - component: {fileID: 3380043653370853101}
   - component: {fileID: 1136886694275857388}
   m_Layer: 0
   m_Name: BearTrap
@@ -281,40 +280,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!135 &5515468340467771134
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4816066040495627517}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.008747398
-  m_Center: {x: 0, y: 0, z: 0.0002526009}
---- !u!114 &5351614546556482813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4816066040495627517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559e271f507b47b43bbd921c9722dda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Trap
-  isActive: 1
 --- !u!54 &2403366795039582857
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,11 +302,26 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 0
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &3380043653370853101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816066040495627517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fd48efdb4d7fc48b924a200256cae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BearTrap
+  isActive: 1
+  crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
+  placePoint: {fileID: 1190749335850418798}
 --- !u!65 &1136886694275857388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -471,7 +451,7 @@ GameObject:
   - component: {fileID: 8924783920506434304}
   - component: {fileID: 4232845169008019011}
   m_Layer: 0
-  m_Name: crowbar_Lev
+  m_Name: crowbar_Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,7 +466,7 @@ Transform:
   m_GameObject: {fileID: 8498304748802047531}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0.083, y: 0.37, z: -0.271}
+  m_LocalPosition: {x: 0.099, y: 0.37, z: 0.009}
   m_LocalScale: {x: 50, y: 50.00001, z: 50.00001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -613,7 +593,7 @@ HingeJoint:
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
     spring: 45
     damper: 0
@@ -627,8 +607,8 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: -76.84729
-    max: 11.274609
+    min: -56.084705
+    max: 10.8452
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -658,8 +638,8 @@ MonoBehaviour:
   OnMax:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5351614546556482813}
-        m_TargetAssemblyTypeName: Trap, Assembly-CSharp
+      - m_Target: {fileID: 3380043653370853101}
+        m_TargetAssemblyTypeName: BearTrap, Assembly-CSharp
         m_MethodName: OnLeverPlaced
         m_Mode: 1
         m_Arguments:
@@ -687,7 +667,31 @@ MonoBehaviour:
       m_Calls: []
   OnMin:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3380043653370853101}
+        m_TargetAssemblyTypeName: BearTrap, Assembly-CSharp
+        m_MethodName: OnLeverPlaced
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8498304748802047531}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   stepEvents: []
 --- !u!114 &8924783920506434304
 MonoBehaviour:

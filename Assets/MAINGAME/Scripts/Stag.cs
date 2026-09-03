@@ -1,36 +1,28 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class Stag : MonoBehaviour
 {
+    [Header("Data Profile")]
+    public AnimalData animalData; // Drag your ScriptableObject here in the Inspector!
+
     private NavMeshAgent navAgent;
     private Animator animator;
     public Transform player;
 
     public LayerMask groundLayer, playerLayer, obstacleLayer;
 
-    //Animal Properties
-    [SerializeField] private float walkSpeed = 1.5f;
-    [SerializeField] private float runSpeed = 5f;
-
     //Patrolling
     private bool walkPointSet;
     private Vector3 walkPoint;
-    public float walkPointRange = 20f;
-    public float fleeDistance = 20f;
 
     //Detection
-    public float raycastLength = 8f;
     public Transform raycastSource;
+    public Transform trappedTrans;
     public bool trapStag;
-    public float visualConeAngle = 60f;
-    public float detectionRange = 10f;
     private bool moveTowardsTrap = false;
     private Trap targetTrap;
-    public Transform trappedTrans;
 
     //States
     public enum AnimalState { Injured, Eating, Idle, Roaming, Fleeing, Attacking }
@@ -39,20 +31,15 @@ public class Stag : MonoBehaviour
 
     // Passive Timers
     private float passiveTimer;
-    public float timeSpentIdlingOrEating = 3f;
 
     private void Awake()
     {
         player = Camera.main.transform;
-        //player = GameObject.Find("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         currentState = AnimalState.Idle;
-        //GameObject childWithTag = GetComponentInChildren<Transform>(true).CompareTag("Leg")
-            //? GetComponentInChildren<Transform>(true).gameObject : null;
-        //trappedTrans = childWithTag.transform;
 
-        navAgent.speed = walkSpeed;
+        navAgent.speed = animalData.walkSpeed;
         canWalk = true;
         walkPointSet = false;
     }
@@ -103,16 +90,15 @@ public class Stag : MonoBehaviour
         else if (random <= 0.6f && !trapStag)
         {
             ChangeState(AnimalState.Eating);
-            passiveTimer = timeSpentIdlingOrEating;
+            passiveTimer = animalData.timeSpentIdlingOrEating;
         }
         else if (random <= 0.9f && !trapStag)
         {
             ChangeState(AnimalState.Idle);
-            passiveTimer = timeSpentIdlingOrEating;
+            passiveTimer = animalData.timeSpentIdlingOrEating;
         }
         else
         {
-            //Move Towards Trap
             if (TrapManager.Instance != null)
             {
                 targetTrap = TrapManager.Instance.GetRandomActiveTrapInRadius(transform.position, 25f);
@@ -137,20 +123,17 @@ public class Stag : MonoBehaviour
     private void CheckForThreats()
     {
         if (currentState == AnimalState.Injured) return;
-        Debug.Log("Is this checking");
+
         Vector3 directionToPlayer = (player.position - raycastSource.position).normalized;
 
-        //Debug.Log($"Distance from player - {Vector3.Distance(player.position, transform.position)}");
-        Debug.Log($"Position of player - {player.position}");
-        if (Vector3.Distance(player.position, transform.position) <= detectionRange)
+        if (Vector3.Distance(player.position, transform.position) <= animalData.detectionRange)
         {
             float angleToPlayer = Vector3.Angle(raycastSource.forward, directionToPlayer);
-            Debug.Log("Inside a sphere");
-;            if (angleToPlayer <= visualConeAngle / 2f)
+
+            if (angleToPlayer <= animalData.visualConeAngle / 2f)
             {
-                if (!Physics.Raycast(raycastSource.position, directionToPlayer, raycastLength, obstacleLayer))
+                if (!Physics.Raycast(raycastSource.position, directionToPlayer, animalData.raycastLength, obstacleLayer))
                 {
-                    Debug.Log("Raycast done");
                     if (currentState != AnimalState.Fleeing)
                     {
                         ChangeState(AnimalState.Fleeing);
@@ -165,12 +148,12 @@ public class Stag : MonoBehaviour
 
     private void HandleFleeingState()
     {
-        navAgent.speed = runSpeed;
+        navAgent.speed = animalData.runSpeed;
 
         if (!walkPointSet)
         {
             Vector3 directionToPlayer = (transform.position - player.position).normalized;
-            Vector3 runPoint = transform.position + (directionToPlayer * fleeDistance);
+            Vector3 runPoint = transform.position + (directionToPlayer * animalData.fleeDistance);
 
             if (NavMesh.SamplePosition(runPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
@@ -184,10 +167,10 @@ public class Stag : MonoBehaviour
             {
                 walkPointSet = false;
 
-                if (Vector3.Distance(player.position, transform.position) > detectionRange)
+                if (Vector3.Distance(player.position, transform.position) > animalData.detectionRange)
                 {
                     ChangeState(AnimalState.Idle);
-                    passiveTimer = timeSpentIdlingOrEating;
+                    passiveTimer = animalData.timeSpentIdlingOrEating;
                 }
             }
         }
@@ -195,7 +178,7 @@ public class Stag : MonoBehaviour
 
     private void Roam()
     {
-        navAgent.speed = walkSpeed;
+        navAgent.speed = animalData.walkSpeed;
 
         if (!walkPointSet && !moveTowardsTrap)
         {
@@ -209,15 +192,15 @@ public class Stag : MonoBehaviour
                 moveTowardsTrap = false;
                 targetTrap = null;
                 ChangeState(AnimalState.Idle);
-                passiveTimer = timeSpentIdlingOrEating;
+                passiveTimer = animalData.timeSpentIdlingOrEating;
             }
         }
     }
 
     private void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = Random.Range(-animalData.walkPointRange, animalData.walkPointRange);
+        float randomX = Random.Range(-animalData.walkPointRange, animalData.walkPointRange);
 
         Vector3 randomPoint = transform.position + new Vector3(randomX, 0f, randomZ);
 
@@ -236,6 +219,7 @@ public class Stag : MonoBehaviour
         navAgent.isStopped = true;
         navAgent.Warp(trapTransform.position);
         trapTransform.position = trappedTrans.position;
+        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, 180f, 200);
     }
 
     private void ChangeState(AnimalState newState)
@@ -254,11 +238,11 @@ public class Stag : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (raycastSource != null && player != null)
+        if (raycastSource != null && player != null && animalData != null)
         {
             Vector3 directionToPlayer = (player.position - raycastSource.position).normalized;
-            Gizmos.DrawWireSphere(transform.position, detectionRange);
-            Gizmos.DrawRay(raycastSource.position, directionToPlayer * raycastLength);
+            Gizmos.DrawWireSphere(transform.position, animalData.detectionRange);
+            Gizmos.DrawRay(raycastSource.position, directionToPlayer * animalData.raycastLength);
         }
     }
 }
