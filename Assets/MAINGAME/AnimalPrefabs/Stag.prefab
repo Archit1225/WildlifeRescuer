@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4893577023640775411}
   - component: {fileID: 4052071073035247904}
   - component: {fileID: 1753205539879930477}
-  - component: {fileID: -5305413064952940736}
+  - component: {fileID: 7027385062804938614}
   m_Layer: 0
   m_Name: Stag
   m_TagString: Animal
@@ -323,14 +323,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-5305413064952940736
+--- !u!114 &7027385062804938614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920128003817724717}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 

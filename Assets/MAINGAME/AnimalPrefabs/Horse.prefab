@@ -1725,14 +1725,14 @@ GameObject:
   - component: {fileID: 2732198604714027966}
   - component: {fileID: 1717994517219362725}
   - component: {fileID: 5527723925787584620}
-  - component: {fileID: 8318853228707465659}
+  - component: {fileID: 6082429783346384961}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7667124617148522648
 Transform:
   m_ObjectHideFlags: 0
@@ -1875,14 +1875,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8318853228707465659
+--- !u!114 &6082429783346384961
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5829006431196156919}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 

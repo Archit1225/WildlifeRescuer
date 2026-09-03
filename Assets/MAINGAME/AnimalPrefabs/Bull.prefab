@@ -1430,14 +1430,14 @@ GameObject:
   - component: {fileID: 7650592303834509063}
   - component: {fileID: 3858359810800753025}
   - component: {fileID: 4188866536782908223}
-  - component: {fileID: 1504631719830146993}
+  - component: {fileID: 6938920985940868230}
   m_Layer: 0
   m_Name: Bull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5151412034153982015
 Transform:
   m_ObjectHideFlags: 0
@@ -1580,14 +1580,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1504631719830146993
+--- !u!114 &6938920985940868230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7481624219472642619}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 

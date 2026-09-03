@@ -175,14 +175,14 @@ GameObject:
   - component: {fileID: 1347911640698210791}
   - component: {fileID: 7400689758307575407}
   - component: {fileID: 6898232900446861607}
-  - component: {fileID: -8799819588992235308}
+  - component: {fileID: 7319822573451871338}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1958514777673429944
 Transform:
   m_ObjectHideFlags: 0
@@ -325,14 +325,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8799819588992235308
+--- !u!114 &7319822573451871338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562103515310414932}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
   m_Name: 
