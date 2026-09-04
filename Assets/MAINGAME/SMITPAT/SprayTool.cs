@@ -24,24 +24,29 @@ public class SprayTool : MonoBehaviour
 
     public void FireSpray()
     {
-        // 1. Play visuals
         if (sprayParticles != null) sprayParticles.Play();
+        if (sprayAnimator != null) sprayAnimator.SetTrigger(animationTriggerName);
 
-        // 2. Play animation
-        if (sprayAnimator != null)
-        {
-            sprayAnimator.SetTrigger(animationTriggerName);
-        }
-
-        // 3. Shoot the raycast
         Ray ray = new Ray(nozzle.position, nozzle.forward);
-        
+
         if (Physics.Raycast(ray, out RaycastHit hit, sprayDistance))
         {
             BloodNode node = hit.collider.GetComponent<BloodNode>();
             if (node != null)
             {
                 node.ReceiveSpray(strengthPerHit);
+                return; // Stop here if raycast succeeded
+            }
+        }
+
+        Collider[] overlappingColliders = Physics.OverlapSphere(nozzle.position, 0.1f);
+        foreach (Collider col in overlappingColliders)
+        {
+            BloodNode node = col.GetComponent<BloodNode>();
+            if (node != null)
+            {
+                node.ReceiveSpray(strengthPerHit);
+                break;
             }
         }
     }

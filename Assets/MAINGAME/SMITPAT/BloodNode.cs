@@ -5,7 +5,6 @@ public class BloodNode : MonoBehaviour
 {
     [Header("Phase 1: Cleaning")]
     public float maxScrubTime = 3.0f;
-    public float scrubSpeed = 1.0f;
     public float currentScrubValue = 0f;
     public bool isCleaned = false; // Cloth phase done
 
@@ -30,32 +29,38 @@ public class BloodNode : MonoBehaviour
     }
 
     // PHASE 1: CLOTH SCRUBBING
+    // PHASE 1: CLOTH SCRUBBING
     private void OnTriggerStay(Collider other)
     {
         if (isCleaned) return;
 
         if (other.CompareTag("Cloth"))
         {
-            currentScrubValue += scrubSpeed * Time.deltaTime;
-            
-            // Shrink down
-            float cleanPercent = currentScrubValue / maxScrubTime;
-            transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, cleanPercent);
+            Rigidbody clothRb = other.attachedRigidbody;
 
-            if (currentScrubValue >= maxScrubTime)
+            if (clothRb != null)
             {
-                isCleaned = true;
-                
-                // Reappear at normal size for the spray phase
-                transform.localScale = initialScale;
-                
-                // Swap to the outline material
-                if (outlineMaterial != null)
+                float speed = clothRb.linearVelocity.magnitude;
+
+                if (speed > 0.1f)
                 {
-                    rend.material = outlineMaterial;
-                    activeMaterial = rend.material;
-                    // Set starting color (mostly transparent white)
-                    activeMaterial.color = new Color(1f, 1f, 1f, 0.1f); 
+                    currentScrubValue += speed * Time.deltaTime;
+
+                    float cleanPercent = currentScrubValue / maxScrubTime;
+                    transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, cleanPercent);
+
+                    if (currentScrubValue >= maxScrubTime)
+                    {
+                        isCleaned = true;
+
+                        transform.localScale = initialScale;
+                        if (outlineMaterial != null)
+                        {
+                            rend.material = outlineMaterial;
+                            activeMaterial = rend.material;
+                            activeMaterial.color = new Color(1f, 1f, 1f, 0.1f);
+                        }
+                    }
                 }
             }
         }

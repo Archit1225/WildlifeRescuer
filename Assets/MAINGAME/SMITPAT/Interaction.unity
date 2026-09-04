@@ -2674,7 +2674,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
@@ -2764,7 +2763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
@@ -2974,7 +2972,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
