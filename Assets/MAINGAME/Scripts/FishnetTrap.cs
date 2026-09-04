@@ -6,6 +6,10 @@ public class FishnetTrap : Trap
     public GameObject netPrefab;
     public float dropHeight = 8f;
 
+    [Header("Task Settings")]
+    public float timeLimit = 60f;
+    public int bonusPoints = 50;
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isActive) return;
@@ -19,7 +23,7 @@ public class FishnetTrap : Trap
             {
                 animal.GetTrapped(transform);
 
-                Vector3 calculatedScale = Vector3.one; // Fallback
+                Vector3 calculatedScale = Vector3.one; 
 
                 if (animal.animalData != null)
                 {
@@ -37,7 +41,16 @@ public class FishnetTrap : Trap
                 {
                     netRb = spawnedNet.AddComponent<Rigidbody>();
                 }
+
+                TaskManager.Instance.CreateTask("Fishnet Rescue", transform, animal.gameObject, timeLimit, bonusPoints);
             }
         }
+    }
+
+    // Call this from whatever VR interaction removes the net!
+    public void OnNetRemoved()
+    {
+        TaskManager.Instance.CompleteTask(transform);
+        // Add your logic here to free the animal and destroy the net
     }
 }
