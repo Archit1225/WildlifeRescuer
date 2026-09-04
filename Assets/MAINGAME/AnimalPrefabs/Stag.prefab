@@ -214,10 +214,10 @@ MonoBehaviour:
   player: {fileID: 2986224561431156795}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   playerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 4096
