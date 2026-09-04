@@ -2824,7 +2824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
@@ -2914,7 +2913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
@@ -3057,6 +3055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5701783812927768525, guid: 19b65c25f15ee87468266e3643c5fc41, type: 3}
+      propertyPath: sprayParticles
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3104,7 +3106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodNode
   maxScrubTime: 3
-  scrubSpeed: 1
   currentScrubValue: 0
   isCleaned: 0
   maxSprayHits: 5
