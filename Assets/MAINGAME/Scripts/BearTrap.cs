@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public class BearTrap : Trap // Inherits from the base Trap class
+public class BearTrap : Trap 
 {
     private Animator anim;
     public GameObject crowbarPrefab;
     public GameObject placePoint;
     private Stag stag;
+
+    [Header("Task Settings")]
+    public float timeLimit = 90f;
+    public int bonusPoints = 50;
 
     private void Awake()
     {
@@ -16,8 +20,8 @@ public class BearTrap : Trap // Inherits from the base Trap class
     {
         Debug.Log("Trap disarmed");
         TaskManager.Instance.CompleteTask(transform);
-        anim.Play("UnTrap");
         
+        anim.Play("UnTrap");
         stag.FreeFromTrap();
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
         Destroy(gameObject);    
@@ -39,6 +43,7 @@ public class BearTrap : Trap // Inherits from the base Trap class
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);
+                    TaskManager.Instance.CreateTask("Bear Trap Rescue", transform, stag.gameObject, timeLimit, bonusPoints);
                 }
             }
         }

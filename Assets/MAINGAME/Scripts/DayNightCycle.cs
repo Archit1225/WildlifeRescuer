@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -8,10 +9,10 @@ public class DayNightCycle : MonoBehaviour
 
     [Header("References")]
     public Light sunLight;
-    public Material skyboxMaterial; // optional, e.g. procedural skybox
+    public Material skyboxMaterial; 
 
     [Header("Sun Intensity/Color")]
-    public AnimationCurve sunIntensityCurve; // x: 0-1 timeOfDay, y: 0-1 intensity multiplier
+    public AnimationCurve sunIntensityCurve; 
     public Gradient sunColorGradient;
     public float maxSunIntensity = 1.2f;
 
@@ -26,7 +27,12 @@ public class DayNightCycle : MonoBehaviour
     void Update()
     {
         timeOfDay += Time.deltaTime / dayLengthInSeconds;
-        if (timeOfDay > 1f) timeOfDay -= 1f;
+        
+        if (timeOfDay >= 1f) 
+        {
+            timeOfDay -= 1f;
+            TriggerEndOfDay(); 
+        }
 
         UpdateSun();
         UpdateAmbient();
@@ -35,7 +41,6 @@ public class DayNightCycle : MonoBehaviour
 
     void UpdateSun()
     {
-        // Rotate: sunrise at 0.25, noon at 0.5, sunset at 0.75, midnight at 0 or 1
         float sunAngle = timeOfDay * 360f - 90f;
         sunLight.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
 
@@ -43,7 +48,6 @@ public class DayNightCycle : MonoBehaviour
         sunLight.intensity = intensityMultiplier * maxSunIntensity;
         sunLight.color = sunColorGradient.Evaluate(timeOfDay);
 
-        // Optional: drive a procedural skybox's sun position/exposure
         if (skyboxMaterial != null && skyboxMaterial.HasProperty("_SunSize"))
         {
             skyboxMaterial.SetFloat("_Exposure", Mathf.Lerp(0.3f, 1.3f, intensityMultiplier));
@@ -59,5 +63,19 @@ public class DayNightCycle : MonoBehaviour
     void UpdateFog()
     {
         RenderSettings.fogColor = fogColorGradient.Evaluate(timeOfDay);
+    }
+
+    private void TriggerEndOfDay()
+    {
+        Debug.Log("Midnight reached! Loading End Screen...");
+        
+        if (TaskManager.Instance != null)
+        {
+            // Calculates final score in console log
+            TaskManager.Instance.CalculateFinalScore();
+        }
+
+        // Make sure "EndScreen" matches the exact name of your End Screen scene in Build Settings!
+        SceneManager.LoadScene("EndScreen");
     }
 }

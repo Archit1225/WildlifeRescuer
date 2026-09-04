@@ -8,6 +8,9 @@ public class BloodManager : MonoBehaviour
     private bool bandagePhaseComplete = false;
     public Stag stag;
 
+    [Header("Scoring")]
+    public int treatmentPoints = 50;
+
     private void Start()
     {
         bloodNodes = GetComponentsInChildren<BloodNode>(true);
@@ -26,12 +29,11 @@ public class BloodManager : MonoBehaviour
         else if (!bandagePhaseComplete)
         {
             CheckBandaidPhase();
-            Debug.Log("Phase still going on?");
         }
 
         if (bandagePhaseComplete)
         {
-            Debug.Log("Phase Done?");
+            Debug.Log("Treatment Done!");
             stag.Healed();
             gameObject.SetActive(false);
         }
@@ -48,7 +50,7 @@ public class BloodManager : MonoBehaviour
         if (allClean)
         {
             clothPhaseComplete = true;
-            Debug.Log("All blood splats cleaned! They have reappeared as outlines. Ready for Spray.");
+            Debug.Log("All blood splats cleaned! Ready for Spray.");
         }
     }
 
@@ -63,7 +65,7 @@ public class BloodManager : MonoBehaviour
         if (allSprayed)
         {
             sprayPhaseComplete = true;
-            Debug.Log("All patches completely sprayed! Ready for Bandage phase.");
+            Debug.Log("All patches sprayed! Ready for Bandage phase.");
         }
     }
 
@@ -78,7 +80,12 @@ public class BloodManager : MonoBehaviour
         if (allBandaged)
         {
             bandagePhaseComplete = true;
-            Debug.Log("All patches completely sprayed! Ready for Bandage phase.");
+            Debug.Log("All patches bandaged! Stag is now healed.");
+
+            if (TaskManager.Instance != null && stag != null)
+            {
+                TaskManager.Instance.CompleteTreatment(stag.gameObject, treatmentPoints);
+            }
         }
     }
 }
