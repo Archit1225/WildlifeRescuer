@@ -20,6 +20,7 @@ public class Stag : MonoBehaviour
     //Detection
     public Transform raycastSource;
     public Transform trappedTrans;
+    public GameObject bloodSpat;
     public bool trapStag;
     private bool moveTowardsTrap = false;
     private Trap targetTrap;
@@ -85,6 +86,8 @@ public class Stag : MonoBehaviour
     private void HandleInjuredState()
     {
         Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
+        bloodSpat.SetActive(true);
+
 
         if (!navAgent.isStopped)
         {
@@ -92,12 +95,20 @@ public class Stag : MonoBehaviour
         }
     }
 
+    public void Healed()
+    {
+        canWalk = true;
+        navAgent.isStopped = false;
+        ChangeState(AnimalState.Fleeing);
+        walkPointSet = false;
+    }
+
     public void FreeFromTrap()
     {
         canWalk = true;
         navAgent.isStopped = false;
 
-        float randomChance = Random.Range(0f, 1f);
+        float randomChance = Random.Range(0.5f, 1f);
 
         if (randomChance <= 0.5f)
         {
