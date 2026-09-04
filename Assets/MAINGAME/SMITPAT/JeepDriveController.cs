@@ -6,17 +6,15 @@ using UnityEngine.XR;
 public class JeepDriveController : MonoBehaviour
 {
     [Header("Mount & Seat Setup")]
-    [Tooltip("The empty Transform marking where the player's head/seat should be")]
     [SerializeField] private Transform seatAnchor;
-
-    [Tooltip("The top-level parent of your VR rig (e.g. XR Origin or Auto Hand Player)")]
     [SerializeField] private Transform playerTrackingRoot;
-
-    [Tooltip("The Main Camera (head) inside your VR rig")]
     [SerializeField] private Transform playerHeadCamera;
-
-    [Tooltip("Spot placed outside the driver door where the player lands on exit")]
+    
+    [Tooltip("MUST be a child of the Jeep in the Hierarchy!")]
     [SerializeField] private Transform exitPoint;
+    
+    [Tooltip("Distance from the SEAT (not the Jeep center) to enter")]
+    [SerializeField] private float mountDistance = 3.0f;
 
     [Header("Drive Settings")]
     [SerializeField] private float forwardSpeed = 8f;
@@ -25,10 +23,12 @@ public class JeepDriveController : MonoBehaviour
 
     private Rigidbody rb;
     private bool isMounted = false;
-    private bool isPlayerInTriggerZone = false;
 
     private bool lastAPressed = false;
     private bool lastBPressed = false;
+    
+    // Store the original parent so we can restore it when exiting
+    private Transform originalPlayerParent;
 
     private void Awake()
     {
@@ -55,14 +55,22 @@ public class JeepDriveController : MonoBehaviour
         rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isAPressed);
         rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool isBPressed);
 
-        if (!isMounted && isPlayerInTriggerZone)
+        if (!isMounted)
         {
             if (isAPressed && !lastAPressed)
             {
-                MountJeep();
+                // FIX 1: Check distance to the SEAT, not the Jeep's center
+                if (playerTrackingRoot != null && seatAnchor != null)
+                {
+                    float distance = Vector3.Distance(playerTrackingRoot.position, seatAnchor.position);
+                    if (distance <= mountDistance)
+                    {
+                        MountJeep();
+                    }
+                }
             }
         }
-        else if (isMounted)
+        else 
         {
             if (isBPressed && !lastBPressed)
             {
@@ -74,52 +82,32 @@ public class JeepDriveController : MonoBehaviour
         lastBPressed = isBPressed;
     }
 
-    private void LateUpdate()
-    {
-        if (!isMounted || playerTrackingRoot == null || seatAnchor == null) return;
-
-        // Keep the player rotation matched to the Jeep
-        playerTrackingRoot.rotation = seatAnchor.rotation;
-
-        // Calculate headset offset so the player's actual EYES align with the seat anchor
-        if (playerHeadCamera != null)
-        {
-            Vector3 headOffset = playerHeadCamera.position - playerTrackingRoot.position;
-            playerTrackingRoot.position = seatAnchor.position - headOffset;
-        }
-        else
-        {
-            playerTrackingRoot.position = seatAnchor.position;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (playerTrackingRoot != null && (other.transform == playerTrackingRoot || other.transform.IsChildOf(playerTrackingRoot)))
-        {
-            isPlayerInTriggerZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (playerTrackingRoot != null && (other.transform == playerTrackingRoot || other.transform.IsChildOf(playerTrackingRoot)))
-        {
-            isPlayerInTriggerZone = false;
-        }
-    }
-
     public void MountJeep()
     {
         if (isMounted || playerTrackingRoot == null || seatAnchor == null) return;
         isMounted = true;
-        isPlayerInTriggerZone = false;
+
+        if (playerTrackingRoot.TryGetComponent(out Rigidbody pRb))
+        {
+            pRb.isKinematic = true;
+        }
+        if (playerTrackingRoot.TryGetComponent(out Collider pCol))
+        {
+            pCol.enabled = false;
+        }
+
+        // FIX 2: Parent the player to the seat so Unity perfectly syncs their movement
+        originalPlayerParent = playerTrackingRoot.parent;
+        playerTrackingRoot.SetParent(seatAnchor, true);
     }
 
     public void DismountJeep()
     {
         if (!isMounted || playerTrackingRoot == null) return;
         isMounted = false;
+
+        // Unparent the player
+        playerTrackingRoot.SetParent(originalPlayerParent, true);
 
         if (exitPoint != null)
         {
@@ -129,6 +117,35 @@ public class JeepDriveController : MonoBehaviour
         else
         {
             playerTrackingRoot.position = transform.position + (-transform.right * 1.5f);
+        }
+
+        if (playerTrackingRoot.TryGetComponent(out Rigidbody pRb))
+        {
+            pRb.isKinematic = false;
+        }
+        if (playerTrackingRoot.TryGetComponent(out Collider pCol))
+        {
+            pCol.enabled = true;
+        }
+    }
+
+    // FIX 3: Moved back to LateUpdate. VR Headsets update their tracking very late in the frame.
+    // Doing this here prevents the headset from fighting the camera snap.
+    private void LateUpdate()
+    {
+        if (isMounted && playerTrackingRoot != null && seatAnchor != null)
+        {
+            playerTrackingRoot.rotation = seatAnchor.rotation;
+
+            if (playerHeadCamera != null)
+            {
+                Vector3 headOffset = playerHeadCamera.position - playerTrackingRoot.position;
+                playerTrackingRoot.position = seatAnchor.position - headOffset;
+            }
+            else
+            {
+                playerTrackingRoot.position = seatAnchor.position;
+            }
         }
     }
 
