@@ -5,6 +5,7 @@ public class BearTrap : Trap // Inherits from the base Trap class
     private Animator anim;
     public GameObject crowbarPrefab;
     public GameObject placePoint;
+    private Stag stag;
 
     private void Awake()
     {
@@ -16,7 +17,10 @@ public class BearTrap : Trap // Inherits from the base Trap class
         Debug.Log("Trap disarmed");
         TaskManager.Instance.CompleteTask(transform);
         anim.Play("UnTrap");
+        
+        stag.FreeFromTrap();
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);    
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +35,7 @@ public class BearTrap : Trap // Inherits from the base Trap class
             if (other.CompareTag("Animal"))
             {
                 placePoint.SetActive(true);
-                Stag stag = other.GetComponent<Stag>();
+                stag = other.GetComponent<Stag>();
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);

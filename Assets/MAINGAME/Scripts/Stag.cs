@@ -20,12 +20,13 @@ public class Stag : MonoBehaviour
     //Detection
     public Transform raycastSource;
     public Transform trappedTrans;
+    public GameObject bloodSpat;
     public bool trapStag;
     private bool moveTowardsTrap = false;
     private Trap targetTrap;
 
     //States
-    public enum AnimalState { Injured, Eating, Idle, Roaming, Fleeing, Attacking }
+    public enum AnimalState { Trapped, Eating, Idle, Roaming, Fleeing, Injured }
     private AnimalState currentState;
     private bool canWalk;
 
@@ -62,9 +63,12 @@ public class Stag : MonoBehaviour
             case AnimalState.Fleeing:
                 HandleFleeingState();
                 break;
-            case AnimalState.Injured:
+            case AnimalState.Trapped:
                 moveTowardsTrap = false;
                 targetTrap = null;
+                break;
+            case AnimalState.Injured:
+                HandleInjuredState();
                 break;
         }
     }
@@ -76,6 +80,47 @@ public class Stag : MonoBehaviour
         if (passiveTimer <= 0)
         {
             DecideNextPassiveAction();
+        }
+    }
+
+    private void HandleInjuredState()
+    {
+        Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
+        bloodSpat.SetActive(true);
+
+
+        if (!navAgent.isStopped)
+        {
+            navAgent.isStopped = true;
+        }
+    }
+
+    public void Healed()
+    {
+        canWalk = true;
+        navAgent.isStopped = false;
+        ChangeState(AnimalState.Fleeing);
+        walkPointSet = false;
+    }
+
+    public void FreeFromTrap()
+    {
+        canWalk = true;
+        navAgent.isStopped = false;
+
+        float randomChance = Random.Range(0.5f, 1f);
+
+        if (randomChance <= 0.5f)
+        {
+            // Not injured, run away
+            ChangeState(AnimalState.Fleeing);
+            walkPointSet = false;
+            Debug.Log("Stag freed safely! Fleeing into the woods.");
+        }
+        else
+        {
+            // Injured, needs medical attention
+            ChangeState(AnimalState.Injured);
         }
     }
 
@@ -122,7 +167,7 @@ public class Stag : MonoBehaviour
 
     private void CheckForThreats()
     {
-        if (currentState == AnimalState.Injured) return;
+        if (currentState == AnimalState.Trapped) return;
 
         Vector3 directionToPlayer = (player.position - raycastSource.position).normalized;
 
@@ -214,7 +259,7 @@ public class Stag : MonoBehaviour
 
     public void GetTrapped(Transform trapTransform)
     {
-        ChangeState(AnimalState.Injured);
+        ChangeState(AnimalState.Trapped);
         canWalk = false;
         navAgent.isStopped = true;
         navAgent.Warp(trapTransform.position);
@@ -227,6 +272,7 @@ public class Stag : MonoBehaviour
         if (currentState == newState) return;
 
         animator.SetBool("Injured", false);
+        animator.SetBool("Trapped", false);
         animator.SetBool("Eating", false);
         animator.SetBool("Roaming", false);
         animator.SetBool("Fleeing", false);
