@@ -88,4 +88,41 @@ public class BloodNode : MonoBehaviour
             isSprayed = true;
         }
     }
+   [Header("Phase 3: Bandaging")]
+    [Tooltip("Drag the matching bandaid child (e.g. bandaid_1) here")]
+    public GameObject bandaidChildOnBody;
+    public bool isBandaged = false;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Only allow bandaging if the spray phase is done
+        if (isSprayed && !isBandaged)
+        {
+            // Check if the object touching us has the "Bandaid" tag
+            if (other.CompareTag("Bandaid"))
+            {
+                isBandaged = true;
+
+                // 1. Turn ON the bandaid child on the body
+                if (bandaidChildOnBody != null)
+                {
+                    bandaidChildOnBody.SetActive(true);
+                }
+
+                // 2. Destroy the bandaid the player is holding in their hand
+                // (attachedRigidbody.gameObject ensures we destroy the whole grabbable object, not just the collider)
+                if (other.attachedRigidbody != null)
+                {
+                    Destroy(other.attachedRigidbody.gameObject);
+                }
+                else
+                {
+                    Destroy(other.gameObject);
+                }
+
+                // 3. Turn OFF this blood child
+                gameObject.SetActive(false);
+            }
+        }
+    }
 }
