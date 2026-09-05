@@ -50,8 +50,8 @@ MonoBehaviour:
   showPlaceSettings: 1
   startPlaced: {fileID: 0}
   placedOffset: {fileID: 772589918278316881}
-  placeRadius: 4.21
-  radiusOffset: {x: 0, y: 0, z: 0}
+  placeRadius: 0.74
+  radiusOffset: {x: 0, y: 0, z: -0.13}
   parentOnPlace: 0
   forcePlace: 1
   forceHandRelease: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
   placedJointLink: {fileID: 0}
   jointBreakForce: 1000
   showPlaceRequirements: 1
-  heldPlaceOnly: 0
+  heldPlaceOnly: 1
   nameCompareType: 0
   placeNames:
   - crowbar
@@ -323,6 +323,7 @@ MonoBehaviour:
   isActive: 1
   crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
   placePoint: {fileID: 1190749335850418798}
+  timedDespawn: {fileID: -1291625277345250601}
   timeLimit: 90
   bonusPoints: 50
 --- !u!65 &1136886694275857388

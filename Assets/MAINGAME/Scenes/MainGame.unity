@@ -2452,8 +2452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   waypointPrefab: {fileID: 8473419423231488189, guid: ea26fa34f096fa44c9f556638060bf21, type: 3}
   waypointCanvas: {fileID: 653334071}
-  saveScore: 0
-  treatScore: 0
   currentTasks: []
 --- !u!4 &1544394854
 Transform:
