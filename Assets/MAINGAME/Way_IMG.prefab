@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: faa388b14263155478e05ad6920f5087, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -88,6 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26e5f713452af9419344c5b502117cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaypointMarker
-  waypoint_IMG: {fileID: 5101198335827086690}
-  canvasRect: {fileID: 0}
   target: {fileID: 0}
