@@ -322,6 +322,8 @@ MonoBehaviour:
   isActive: 1
   crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
   placePoint: {fileID: 1190749335850418798}
+  timeLimit: 90
+  bonusPoints: 50
 --- !u!65 &1136886694275857388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -337,12 +339,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.114884734, z: 0.9268084}
-  m_Center: {x: 0, y: 0.092660904, z: 0.090697676}
+  m_Size: {x: 1, y: 0.114884734, z: 0.76695836}
+  m_Center: {x: 0, y: 0.092660904, z: 0.0107726455}
 --- !u!1 &5353473724558672197
 GameObject:
   m_ObjectHideFlags: 0
