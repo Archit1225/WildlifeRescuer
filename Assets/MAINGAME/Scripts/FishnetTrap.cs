@@ -73,14 +73,13 @@ public class FishnetTrap : Trap
             if (animal != null)
             {
                 trappedAnimal = animal; // Store the animal reference for when the net is removed
-                animal.GetTrapped(transform);
+                animal.GetTrappedInNet();
 
                 Vector3 calculatedScale = Vector3.one;
 
                 if (animal.animalData != null)
                 {
                     calculatedScale = animal.animalData.fishnetScale;
-                    calculatedScale.y *= -1;
                 }
 
                 // Position the child net in world space directly above the animal and turn it on

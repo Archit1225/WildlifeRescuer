@@ -1180,6 +1180,7 @@ MonoBehaviour:
   timeOfDay: 0.25
   sunLight: {fileID: 967536485}
   skyboxMaterial: {fileID: 0}
+  scoreScene: ScoreScene
   sunIntensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -3970,6 +3971,10 @@ PrefabInstance:
     - target: {fileID: 7675335685491418004, guid: 7af564d15197e184181c046190c8d6a0, type: 3}
       propertyPath: m_Name
       value: NetTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675335685491418004, guid: 7af564d15197e184181c046190c8d6a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
