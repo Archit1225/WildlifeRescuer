@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 2403366795039582857}
   - component: {fileID: 3380043653370853101}
   - component: {fileID: 1136886694275857388}
-  - component: {fileID: -1291625277345250601}
+  - component: {fileID: 3258189725645290310}
   m_Layer: 0
   m_Name: BearTrap
   m_TagString: Traps
@@ -323,7 +323,6 @@ MonoBehaviour:
   isActive: 1
   crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
   placePoint: {fileID: 1190749335850418798}
-  timedDespawn: {fileID: -1291625277345250601}
   timeLimit: 90
   bonusPoints: 50
 --- !u!65 &1136886694275857388
@@ -347,19 +346,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.114884734, z: 0.76695836}
   m_Center: {x: 0, y: 0.092660904, z: 0.0107726455}
---- !u!114 &-1291625277345250601
+--- !u!114 &3258189725645290310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4816066040495627517}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0deab9b90ed5545aab06746886a1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 37af8781fe4b8ac438946f8231588a78, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimedDespawn
-  lifetimeInSeconds: 10
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyGameObject
 --- !u!1 &5353473724558672197
 GameObject:
   m_ObjectHideFlags: 0

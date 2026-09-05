@@ -5,7 +5,6 @@ public class BearTrap : Trap
     private Animator anim;
     public GameObject crowbarPrefab;
     public GameObject placePoint;
-    public TimedDespawn timedDespawn;
     private Stag stag;
     private ActiveTask currentActiveTask;
 
@@ -27,7 +26,6 @@ public class BearTrap : Trap
         stag.FreeFromTrap();
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
         placePoint.SetActive(false);
-        timedDespawn.enabled = true;        //Destroy(gameObject);
 
     }
 
