@@ -2296,7 +2296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0f698a759f1a34f81f1271747e0df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
-  dayLengthInSeconds: 300
+  dayLengthInSeconds: 420
   timeOfDay: 0.25
   sunLight: {fileID: 266265863}
   skyboxMaterial: {fileID: 0}

@@ -52,7 +52,6 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    // CHANGED: Now returns the ActiveTask reference instead of void
     public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints)
     {
         ActiveTask newTask = new ActiveTask
@@ -73,13 +72,11 @@ public class TaskManager : MonoBehaviour
         currentTasks.Add(newTask);
         Debug.Log($"New Task: {name}. Get there fast!");
 
-        return newTask; // Hand the exact object reference back to the script that called it
+        return newTask;
     }
 
-    // CHANGED: Accepts the direct ActiveTask reference instead of searching by Transform
     public void CompleteTask(ActiveTask taskToComplete)
     {
-        // Directly verify the object exists and is currently in our active list
         if (taskToComplete != null && currentTasks.Contains(taskToComplete))
         {
             float timePercent = Mathf.Clamp01(taskToComplete.timeRemaining / taskToComplete.timeLimit);
@@ -117,7 +114,8 @@ public class TaskManager : MonoBehaviour
     {
         Debug.Log($"Task {task.taskName} time expired! Penalty applied.");
 
-        GameScoreData.saveScore -= 50;
+        // Clamped using Mathf.Max so saveScore can never drop below 0
+        GameScoreData.saveScore = Mathf.Max(0, GameScoreData.saveScore - 50);
 
         CleanupTask(task);
     }
