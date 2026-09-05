@@ -11,7 +11,11 @@ public class Stag : MonoBehaviour
     private Animator animator;
     public Transform player;
 
-    public LayerMask groundLayer, playerLayer, obstacleLayer;
+    public LayerMask groundLayer, obstacleLayer;
+
+    [Header("Spawn Settings")]
+    public bool isDynamicallySpawned = false;
+    public float despawnDistance = 45f; // Distance from player before it vanishes
 
     //Patrolling
     private bool walkPointSet;
@@ -87,7 +91,7 @@ public class Stag : MonoBehaviour
     {
         Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
         bloodSpat.SetActive(true);
-
+        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200);
 
         if (!navAgent.isStopped)
         {
@@ -194,6 +198,13 @@ public class Stag : MonoBehaviour
     private void HandleFleeingState()
     {
         navAgent.speed = animalData.runSpeed;
+
+        if (isDynamicallySpawned && Vector3.Distance(transform.position, player.position) >= despawnDistance)
+        {
+            Debug.Log($"{animalData.speciesName} successfully escaped and despawned.");
+            Destroy(gameObject);
+            return;
+        }
 
         if (!walkPointSet)
         {

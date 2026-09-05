@@ -43,7 +43,7 @@ public class BearTrap : Trap
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);
-                    TaskManager.Instance.CreateTask("Bear Trap Rescue", transform, stag.animalData.speciesName, timeLimit, bonusPoints);
+                    //TaskManager.Instance.CreateTask("Bear Trap Rescue", transform, stag.animalData.speciesName, timeLimit, bonusPoints);
                 }
             }
         }
