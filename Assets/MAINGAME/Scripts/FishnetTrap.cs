@@ -42,7 +42,7 @@ public class FishnetTrap : Trap
                     netRb = spawnedNet.AddComponent<Rigidbody>();
                 }
 
-                TaskManager.Instance.CreateTask("Fishnet Rescue", transform, animal.gameObject, timeLimit, bonusPoints);
+                TaskManager.Instance.CreateTask("Fishnet Rescue", transform, animal.animalData.speciesName, timeLimit, bonusPoints);
             }
         }
     }

@@ -108,7 +108,7 @@ public class Stag : MonoBehaviour
         canWalk = true;
         navAgent.isStopped = false;
 
-        float randomChance = Random.Range(0.5f, 1f);
+        float randomChance = Random.Range(0f, 1f);
 
         if (randomChance <= 0.5f)
         {
@@ -264,7 +264,7 @@ public class Stag : MonoBehaviour
         navAgent.isStopped = true;
         navAgent.Warp(trapTransform.position);
         trapTransform.position = trappedTrans.position;
-        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, gameObject, 180f, 200);
+        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200);
     }
 
     private void ChangeState(AnimalState newState)
