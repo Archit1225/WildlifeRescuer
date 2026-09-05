@@ -25,6 +25,7 @@ public class BearTrap : Trap
         anim.Play("UnTrap");
         stag.FreeFromTrap();
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
+        placePoint.SetActive(false);
         timedDespawn.enabled = true;        //Destroy(gameObject);
 
     }
