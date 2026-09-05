@@ -22,4 +22,8 @@ public class AnimalData : ScriptableObject
 
     [Header("Trap Reactions")]
     public Vector3 fishnetScale = Vector3.one;
+
+    [Header("Spawn Settings")]
+    public float minSpawnDistance = 20f;
+    public float maxSpawnDistance = 60f;
 }

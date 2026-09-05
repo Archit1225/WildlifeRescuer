@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodManager
   stag: {fileID: 4681106144210432700}
+  treatmentPoints: 50
 --- !u!1 &573338182744873648
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,13 +267,12 @@ MonoBehaviour:
   player: {fileID: 2986224561431156795}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1032
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 4096
+  isDynamicallySpawned: 0
+  despawnDistance: 45
   raycastSource: {fileID: 2986224561431156795}
   trappedTrans: {fileID: 4842908181012068995}
   bloodSpat: {fileID: 528042938238070764}
