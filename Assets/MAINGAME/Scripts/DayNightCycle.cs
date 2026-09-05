@@ -24,9 +24,26 @@ public class DayNightCycle : MonoBehaviour
     public bool controlFog = true;
     public Gradient fogColorGradient;
 
+    // Track if we've switched to night music to avoid calling it every frame
+    private bool isNightMusicPlaying = false;
+
+    void Start()
+    {
+        // Start playing day music as soon as the main scene loads
+        if (BGMManager.Instance != null) BGMManager.Instance.PlayDayMusic();
+    }
+
     void Update()
     {
         timeOfDay += Time.deltaTime / dayLengthInSeconds;
+        
+        // --- MUSIC CHECK ---
+        // Assuming 0.75 is dusk (6 PM). Switch to night music once we pass this time.
+        if (timeOfDay >= 0.75f && !isNightMusicPlaying)
+        {
+            isNightMusicPlaying = true;
+            if (BGMManager.Instance != null) BGMManager.Instance.PlayNightMusic();
+        }
         
         if (timeOfDay >= 1f) 
         {
