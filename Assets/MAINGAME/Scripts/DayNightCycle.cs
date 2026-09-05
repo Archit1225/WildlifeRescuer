@@ -9,10 +9,11 @@ public class DayNightCycle : MonoBehaviour
 
     [Header("References")]
     public Light sunLight;
-    public Material skyboxMaterial; 
+    public Material skyboxMaterial;
+    public string scoreScene = "ScoreScene";
 
     [Header("Sun Intensity/Color")]
-    public AnimationCurve sunIntensityCurve; 
+    public AnimationCurve sunIntensityCurve;
     public Gradient sunColorGradient;
     public float maxSunIntensity = 1.2f;
 
@@ -24,31 +25,34 @@ public class DayNightCycle : MonoBehaviour
     public bool controlFog = true;
     public Gradient fogColorGradient;
 
-    // Track if we've switched to night music to avoid calling it every frame
     private bool isNightMusicPlaying = false;
 
-    void Start()
+    private void Awake()
     {
-        // Start playing day music as soon as the main scene loads
+        // 1. Wipe the static score bus clean the moment the scene starts
+        // This guarantees a fresh slate when hitting "Retry" from the End Screen
+        GameScoreData.ResetData();
+    }
+
+    private void Start()
+    {
         if (BGMManager.Instance != null) BGMManager.Instance.PlayDayMusic();
     }
 
-    void Update()
+    private void Update()
     {
         timeOfDay += Time.deltaTime / dayLengthInSeconds;
-        
-        // --- MUSIC CHECK ---
-        // Assuming 0.75 is dusk (6 PM). Switch to night music once we pass this time.
+
         if (timeOfDay >= 0.75f && !isNightMusicPlaying)
         {
             isNightMusicPlaying = true;
             if (BGMManager.Instance != null) BGMManager.Instance.PlayNightMusic();
         }
-        
-        if (timeOfDay >= 1f) 
+
+        if (timeOfDay >= 1f)
         {
             timeOfDay -= 1f;
-            TriggerEndOfDay(); 
+            TriggerEndOfDay();
         }
 
         UpdateSun();
@@ -56,7 +60,7 @@ public class DayNightCycle : MonoBehaviour
         if (controlFog) UpdateFog();
     }
 
-    void UpdateSun()
+    private void UpdateSun()
     {
         float sunAngle = timeOfDay * 360f - 90f;
         sunLight.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
@@ -71,13 +75,13 @@ public class DayNightCycle : MonoBehaviour
         }
     }
 
-    void UpdateAmbient()
+    private void UpdateAmbient()
     {
         RenderSettings.ambientIntensity = ambientIntensityCurve.Evaluate(timeOfDay);
         RenderSettings.ambientLight = ambientColorGradient.Evaluate(timeOfDay);
     }
 
-    void UpdateFog()
+    private void UpdateFog()
     {
         RenderSettings.fogColor = fogColorGradient.Evaluate(timeOfDay);
     }
@@ -86,7 +90,7 @@ public class DayNightCycle : MonoBehaviour
     {
         Debug.Log("Midnight reached! Loading End Screen...");
 
-        // Make sure "EndScreen" matches the exact name of your End Screen scene in Build Settings!
-        SceneManager.LoadScene("EndScreen");
+        // 2. Load the scene. Unity automatically garbage collects all active scene objects.
+        SceneManager.LoadScene(scoreScene);
     }
 }

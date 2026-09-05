@@ -1134,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8526259630467249836
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,7 +1983,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.676, y: 4.999089, z: -9.234073}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.90000004}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3614996973602388448}
@@ -2004,19 +2004,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774e0d33b28e3b344b1b6c61e1a9bf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stag
-  animalData: {fileID: 0}
+  animalData: {fileID: 11400000, guid: 23bee56770e937942a09aa554459409e, type: 2}
   player: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
   isDynamicallySpawned: 0
   despawnDistance: 45
   raycastSource: {fileID: 1813191405907642109}
-  trappedTrans: {fileID: 0}
-  bloodSpat: {fileID: 0}
+  trappedTrans: {fileID: 2560610368456297088}
+  bloodSpat: {fileID: 4256661350846162474}
   trapStag: 0
 --- !u!195 &4786745355518954577
 NavMeshAgent:
@@ -2824,6 +2824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bandaid
       objectReference: {fileID: 0}
+    - target: {fileID: 4575140377072967911, guid: b38912ee0a79b4342841115d3109ea40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2890,6 +2894,10 @@ PrefabInstance:
     - target: {fileID: 4575140377072967911, guid: b38912ee0a79b4342841115d3109ea40, type: 3}
       propertyPath: m_Name
       value: bandaid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575140377072967911, guid: b38912ee0a79b4342841115d3109ea40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3231,6 +3239,10 @@ PrefabInstance:
     - target: {fileID: 4575140377072967911, guid: b38912ee0a79b4342841115d3109ea40, type: 3}
       propertyPath: m_Name
       value: bandaid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575140377072967911, guid: b38912ee0a79b4342841115d3109ea40, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

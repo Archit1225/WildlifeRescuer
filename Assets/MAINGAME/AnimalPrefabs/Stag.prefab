@@ -242,7 +242,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.95854, y: 0, z: -21.55}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.5}
+  m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3631832783747510703}
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stag
   animalData: {fileID: 11400000, guid: 43edf4af64e5bf14e82eaf3e37b341e1, type: 2}
-  player: {fileID: 2986224561431156795}
+  player: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1032
@@ -276,7 +276,7 @@ MonoBehaviour:
   raycastSource: {fileID: 2986224561431156795}
   trappedTrans: {fileID: 4842908181012068995}
   bloodSpat: {fileID: 528042938238070764}
-  trapStag: 1
+  trapStag: 0
 --- !u!195 &8600764752389718721
 NavMeshAgent:
   m_ObjectHideFlags: 0

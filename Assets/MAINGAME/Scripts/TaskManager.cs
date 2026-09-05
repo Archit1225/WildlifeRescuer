@@ -88,7 +88,6 @@ public class TaskManager : MonoBehaviour
     public void CompleteTask(Transform trapTransform)
     {
         ActiveTask completedTask = currentTasks.Find(t => t.targetTrap == trapTransform);
-
         if (completedTask != null)
         {
             float timePercent = Mathf.Clamp01(completedTask.timeRemaining / completedTask.timeLimit);

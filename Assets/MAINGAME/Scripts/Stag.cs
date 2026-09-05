@@ -114,7 +114,7 @@ public class Stag : MonoBehaviour
 
         float randomChance = Random.Range(0f, 1f);
 
-        if (randomChance <= 0.5f)
+        if (randomChance <= 0.3f)
         {
             // Not injured, run away
             ChangeState(AnimalState.Fleeing);

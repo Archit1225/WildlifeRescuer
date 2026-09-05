@@ -2521,7 +2521,7 @@ MonoBehaviour:
   treatScoreText: {fileID: 1055703417}
   comboText: {fileID: 1877481219}
   finalScoreText: {fileID: 328400206}
-  gameplaySceneName: Environment
+  gameplaySceneName: MainGame
 --- !u!1 &1895891937
 GameObject:
   m_ObjectHideFlags: 0

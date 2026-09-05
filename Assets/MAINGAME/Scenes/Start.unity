@@ -202,7 +202,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 854847201}
+      - m_Target: {fileID: 1704097817}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1647762735}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 18996557}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1384,7 +1408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &854847202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1668,7 +1692,7 @@ GameObject:
   - component: {fileID: 1647762738}
   - component: {fileID: 1647762737}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1713,29 +1737,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The Rescue Protocol
-
-
-    Disarm: Grab your tools (like the crowbar) to
-    physically pry open Bear Traps or dismantle Drop Nets.
-
-
-    Assess: Once freed,
-    an animal has a 50% chance of fleeing to safety or collapsing from its wounds.
-
-
-    Treat:
-    If the animal is injured and cannot walk, immediately use your medical tools
-    to stabilize it and earn Treatment Points.
-
-
-    Scoring & Ecosystem Combos
-
-    You
-    earn base points for every animal freed and healed. However, ecosystem diversity
-    is critical. Prioritize rescuing different species (e.g., saving a Stag, a Deer,
-    and a Rabbit) to build your Biodiversity Combo. Rescuing three unique species
-    in a single day will multiply your entire daily score by 3x!'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2097,12 +2099,12 @@ GameObject:
   - component: {fileID: 1704097820}
   - component: {fileID: 1704097819}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1704097818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2142,25 +2144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Your Objective
-
-    As a rapid-response ranger, your duty is to locate
-    illegally trapped wildlife, safely dismantle the traps, and administer medical
-    care before the daily timer runs out.
-
-
-    Navigation & HUD
-
-
-    Waypoint Markers:
-    Your VR visor tracks active distress signals. If an emergency marker sticks to
-    the edge of your screen, physically turn your head in that direction to find
-    the animal.
-
-
-    The Clock: Every rescue has a strict time limit. Reaching the
-    animal quickly yields high bonus points. Letting the timer expire penalizes your
-    daily score.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2541,7 +2525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31173e920a033dd4898807c94293bf0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  mainSceneName: Environment
+  mainSceneName: MainGame
 --- !u!4 &1881161653
 Transform:
   m_ObjectHideFlags: 0

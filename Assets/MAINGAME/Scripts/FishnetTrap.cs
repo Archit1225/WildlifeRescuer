@@ -111,7 +111,7 @@ public class FishnetTrap : Trap
         // Hide or destroy the net child now that the animal is free
         if (netChild != null)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
