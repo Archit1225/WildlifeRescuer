@@ -11,11 +11,10 @@ public class EndScreenUI : MonoBehaviour
     [SerializeField] private TMP_Text finalScoreText;
 
     [Header("Scene Settings")]
-    [SerializeField] private string gameplaySceneName = "MainGameScene"; // Replace with your exact gameplay scene name
+    [SerializeField] private string gameplaySceneName = "MainGameScene"; 
 
     private void Start()
     {
-        // Play the end screen music as soon as this screen loads
         if (BGMManager.Instance != null) BGMManager.Instance.PlayEndMusic();
 
         DisplayScores();
@@ -23,22 +22,16 @@ public class EndScreenUI : MonoBehaviour
 
     private void DisplayScores()
     {
-        if (TaskManager.Instance != null)
-        {
-            int save = GameScoreData.saveScore;
-            int treat = GameScoreData.treatScore;
-            int combo = GameScoreData.GetCombo();
-            int final = GameScoreData.CalculateFinalScore();
+        // Using your correct class name: GameScoreData
+        int save = GameScoreData.saveScore;
+        int treat = GameScoreData.treatScore;
+        int combo = GameScoreData.GetCombo();
+        int final = GameScoreData.CalculateFinalScore();
 
-            if (saveScoreText != null) saveScoreText.text = $"Save Score: {save}";
-            if (treatScoreText != null) treatScoreText.text = $"Treat Score: {treat}";
-            if (comboText != null) comboText.text = $"Combo Multiplier: x{combo}";
-            if (finalScoreText != null) finalScoreText.text = $"Total Score: {final}";
-        }
-        else
-        {
-            Debug.LogWarning("TaskManager instance not found! Make sure you tested by starting from the main game scene.");
-        }
+        if (saveScoreText != null) saveScoreText.text = $"Save Score: {save}";
+        if (treatScoreText != null) treatScoreText.text = $"Treat Score: {treat}";
+        if (comboText != null) comboText.text = $"Combo Multiplier: x{combo}";
+        if (finalScoreText != null) finalScoreText.text = $"Total Score: {final}";
     }
 
     public void RetryGame()

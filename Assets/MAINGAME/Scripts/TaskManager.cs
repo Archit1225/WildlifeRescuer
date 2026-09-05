@@ -6,7 +6,7 @@ public class ActiveTask
 {
     public string taskName;
     public Transform targetTrap;
-    public string associatedSpecies; // CHANGED: Now tracks the species string, not the GameObject
+    public string associatedSpecies;
     public float timeLimit;
     public float timeRemaining;
     public int maxBonusPoints;
@@ -23,12 +23,7 @@ public class TaskManager : MonoBehaviour
     public Transform waypointCanvas;
 
     [Header("Game State")]
-    public int saveScore = 0;
-    public int treatScore = 0;
     public List<ActiveTask> currentTasks = new List<ActiveTask>();
-
-    // CHANGED: Now strictly checks for unique string names (e.g., "Stag", "Rabbit")
-    private HashSet<string> uniqueSpeciesAssisted = new HashSet<string>();
 
     private void Awake()
     {
@@ -57,13 +52,6 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public int GetCombo()
-    {
-        int uniqueCount = uniqueSpeciesAssisted.Count;
-        return uniqueCount >= 3 ? uniqueCount : 1;
-    }
-
-    // CHANGED: Replaced GameObject parameter with string speciesName
     public void CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints)
     {
         ActiveTask newTask = new ActiveTask
@@ -96,10 +84,9 @@ public class TaskManager : MonoBehaviour
             int totalPointsEarned = completedTask.basePoints + bonusEarned;
             GameScoreData.saveScore += totalPointsEarned;
 
-            // Log the unique species string
             if (!string.IsNullOrEmpty(completedTask.associatedSpecies))
             {
-                uniqueSpeciesAssisted.Add(completedTask.associatedSpecies);
+                GameScoreData.uniqueSpeciesAssisted.Add(completedTask.associatedSpecies);
             }
 
             Debug.Log($"Task Completed! Earned: {totalPointsEarned} save points.");
@@ -113,7 +100,7 @@ public class TaskManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(speciesName))
         {
-            uniqueSpeciesAssisted.Add(speciesName);
+            GameScoreData.uniqueSpeciesAssisted.Add(speciesName);
         }
         Debug.Log($"Treatment Complete! Earned {pointsEarned} treat points.");
     }
@@ -121,7 +108,9 @@ public class TaskManager : MonoBehaviour
     private void FailTask(ActiveTask task)
     {
         Debug.Log($"Task {task.taskName} time expired! Penalty applied.");
-        saveScore -= 50;
+        
+        GameScoreData.saveScore -= 50; 
+        
         CleanupTask(task);
     }
 
@@ -136,9 +125,7 @@ public class TaskManager : MonoBehaviour
 
     public void ResetForNextDay()
     {
-        saveScore = 0;
-        treatScore = 0;
-        uniqueSpeciesAssisted.Clear();
+        GameScoreData.ResetData();
 
         foreach (ActiveTask task in currentTasks)
         {
