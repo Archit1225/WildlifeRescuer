@@ -15,6 +15,9 @@ public class EndScreenUI : MonoBehaviour
 
     private void Start()
     {
+        // Play the end screen music as soon as this screen loads
+        if (BGMManager.Instance != null) BGMManager.Instance.PlayEndMusic();
+
         DisplayScores();
     }
 

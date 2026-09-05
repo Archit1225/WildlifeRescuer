@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6169428887555659367}
   - component: {fileID: 9003127984611090855}
   - component: {fileID: 3067654624476130939}
+  - component: {fileID: 9102995741197810850}
   m_Layer: 0
   m_Name: bandaid
-  m_TagString: Untagged
+  m_TagString: Bandaid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +143,27 @@ MonoBehaviour:
   consumeOnUse: 1
   applySound: {fileID: 0}
   applyParticles: {fileID: 0}
+--- !u!65 &9102995741197810850
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575140377072967911}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2.7558866}
+  m_Center: {x: 0, y: 0, z: -0.15302345}
 --- !u!1 &6249454371333176203
 GameObject:
   m_ObjectHideFlags: 0
