@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3067654624476130939}
   - component: {fileID: 9102995741197810850}
   - component: {fileID: 5194288423673502316}
+  - component: {fileID: 3133307426802821997}
   m_Layer: 0
   m_Name: bandaid
   m_TagString: Bandaid
@@ -177,7 +178,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0deab9b90ed5545aab06746886a1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimedDespawn
-  lifetime: 120
+  lifetimeInSeconds: 120
+--- !u!114 &3133307426802821997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575140377072967911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935aaf7da50abf94697c8d70a7a71efe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Autohand.DistanceGrabbable
+  ignoreMe: 0
+  instantPull: 1
+  grabType: 1
+  archMultiplier: 0.6
+  gravitationVelocity: 1
+  rotate: 1
+  rotationSpeed: 1
+  ignoreHighlights: 1
+  targetedMaterial: {fileID: 0}
+  selectedMaterial: {fileID: 0}
+  showEvents: 1
+  OnPull:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTargeting:
+    m_PersistentCalls:
+      m_Calls: []
+  StopTargeting:
+    m_PersistentCalls:
+      m_Calls: []
+  StartSelecting:
+    m_PersistentCalls:
+      m_Calls: []
+  StopSelecting:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6249454371333176203
 GameObject:
   m_ObjectHideFlags: 0
