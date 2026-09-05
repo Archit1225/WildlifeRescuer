@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActiveTask
 {
     public string taskName;
-    public Transform targetTrap;
+    public Transform targetTrap; // Kept only so the Waypoint UI knows where to point
     public string associatedSpecies;
     public float timeLimit;
     public float timeRemaining;
@@ -30,7 +30,7 @@ public class TaskManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            GameScoreData.ResetData();  
+            GameScoreData.ResetData();
         }
         else
         {
@@ -52,7 +52,8 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints)
+    // CHANGED: Now returns the ActiveTask reference instead of void
+    public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints)
     {
         ActiveTask newTask = new ActiveTask
         {
@@ -71,26 +72,33 @@ public class TaskManager : MonoBehaviour
 
         currentTasks.Add(newTask);
         Debug.Log($"New Task: {name}. Get there fast!");
+
+        return newTask; // Hand the exact object reference back to the script that called it
     }
 
-    public void CompleteTask(Transform trapTransform)
+    // CHANGED: Accepts the direct ActiveTask reference instead of searching by Transform
+    public void CompleteTask(ActiveTask taskToComplete)
     {
-        ActiveTask completedTask = currentTasks.Find(t => t.targetTrap == trapTransform);
-        if (completedTask != null)
+        // Directly verify the object exists and is currently in our active list
+        if (taskToComplete != null && currentTasks.Contains(taskToComplete))
         {
-            float timePercent = Mathf.Clamp01(completedTask.timeRemaining / completedTask.timeLimit);
-            int bonusEarned = Mathf.RoundToInt(completedTask.maxBonusPoints * timePercent);
+            float timePercent = Mathf.Clamp01(taskToComplete.timeRemaining / taskToComplete.timeLimit);
+            int bonusEarned = Mathf.RoundToInt(taskToComplete.maxBonusPoints * timePercent);
 
-            int totalPointsEarned = completedTask.basePoints + bonusEarned;
+            int totalPointsEarned = taskToComplete.basePoints + bonusEarned;
             GameScoreData.saveScore += totalPointsEarned;
 
-            if (!string.IsNullOrEmpty(completedTask.associatedSpecies))
+            if (!string.IsNullOrEmpty(taskToComplete.associatedSpecies))
             {
-                GameScoreData.uniqueSpeciesAssisted.Add(completedTask.associatedSpecies);
+                GameScoreData.uniqueSpeciesAssisted.Add(taskToComplete.associatedSpecies);
             }
 
             Debug.Log($"Task Completed! Earned: {totalPointsEarned} save points.");
-            CleanupTask(completedTask);
+            CleanupTask(taskToComplete);
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to complete a task that doesn't exist or was already cleared.");
         }
     }
 
@@ -108,9 +116,9 @@ public class TaskManager : MonoBehaviour
     private void FailTask(ActiveTask task)
     {
         Debug.Log($"Task {task.taskName} time expired! Penalty applied.");
-        
-        GameScoreData.saveScore -= 50; 
-        
+
+        GameScoreData.saveScore -= 50;
+
         CleanupTask(task);
     }
 

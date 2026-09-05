@@ -7,6 +7,7 @@ public class BearTrap : Trap
     public GameObject placePoint;
     public TimedDespawn timedDespawn;
     private Stag stag;
+    private ActiveTask currentActiveTask;
 
     [Header("Task Settings")]
     public float timeLimit = 90f;
@@ -20,7 +21,7 @@ public class BearTrap : Trap
     public void OnLeverPlaced()
     {
         Debug.Log("Trap disarmed");
-        TaskManager.Instance.CompleteTask(transform);
+        TaskManager.Instance.CompleteTask(currentActiveTask);
         
         anim.Play("UnTrap");
         stag.FreeFromTrap();
@@ -46,6 +47,8 @@ public class BearTrap : Trap
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);
+
+                    currentActiveTask = TaskManager.Instance.CreateTask($"Free the {stag.animalData.name}", transform, stag.animalData.name, 180f, 200);
                     //TaskManager.Instance.CreateTask("Bear Trap Rescue", transform, stag.animalData.speciesName, timeLimit, bonusPoints);
                 }
             }

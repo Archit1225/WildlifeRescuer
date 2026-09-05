@@ -275,14 +275,12 @@ public class Stag : MonoBehaviour
         navAgent.isStopped = true;
         navAgent.Warp(trapTransform.position);
         trapTransform.position = trappedTrans.position;
-        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200);
     }
     public void GetTrappedInNet()
     {
         ChangeState(AnimalState.Trapped);
         canWalk = false;
         navAgent.isStopped = true;
-        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200);
     }
 
     private void ChangeState(AnimalState newState)

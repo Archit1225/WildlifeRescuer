@@ -11,6 +11,7 @@ public class FishnetTrap : Trap
     private Material[] originalMaterials;
     private bool allRopesCut = false;
     private Stag trappedAnimal; // Caches the animal to easily free it later
+    private ActiveTask currentActiveTask;
 
     [Header("Task Settings")]
     public float timeLimit = 60f;
@@ -75,6 +76,8 @@ public class FishnetTrap : Trap
                 trappedAnimal = animal; // Store the animal reference for when the net is removed
                 animal.GetTrappedInNet();
 
+                currentActiveTask = TaskManager.Instance.CreateTask($"Free the {animal.animalData.name}", transform, animal.animalData.name, 180f, 200);
+
                 Vector3 calculatedScale = Vector3.one;
 
                 if (animal.animalData != null)
@@ -100,7 +103,7 @@ public class FishnetTrap : Trap
 
     public void OnNetRemoved()
     {
-        TaskManager.Instance.CompleteTask(transform);
+        TaskManager.Instance.CompleteTask(currentActiveTask);
 
         if (trappedAnimal != null)
         {
