@@ -84,7 +84,7 @@ public class BloodManager : MonoBehaviour
 
             if (TaskManager.Instance != null && stag != null)
             {
-                TaskManager.Instance.CompleteTreatment(stag.gameObject, treatmentPoints);
+                TaskManager.Instance.CompleteTreatment(stag.animalData.speciesName, treatmentPoints);
             }
         }
     }

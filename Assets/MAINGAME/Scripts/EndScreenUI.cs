@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro; // Change to using UnityEngine.UI if you are using standard UI Text instead of TextMeshPro
+using TMPro;
 
 public class EndScreenUI : MonoBehaviour
 {
     [Header("UI Text References")]
-    [SerializeField] private TextMeshProUGUI saveScoreText;
-    [SerializeField] private TextMeshProUGUI treatScoreText;
-    [SerializeField] private TextMeshProUGUI comboText;
-    [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private TMP_Text saveScoreText;
+    [SerializeField] private TMP_Text treatScoreText;
+    [SerializeField] private TMP_Text comboText;
+    [SerializeField] private TMP_Text finalScoreText;
 
     [Header("Scene Settings")]
     [SerializeField] private string gameplaySceneName = "MainGameScene"; // Replace with your exact gameplay scene name
@@ -22,10 +22,10 @@ public class EndScreenUI : MonoBehaviour
     {
         if (TaskManager.Instance != null)
         {
-            int save = TaskManager.Instance.saveScore;
-            int treat = TaskManager.Instance.treatScore;
-            int combo = TaskManager.Instance.GetCombo();
-            int final = TaskManager.Instance.CalculateFinalScore();
+            int save = GameScoreData.saveScore;
+            int treat = GameScoreData.treatScore;
+            int combo = GameScoreData.GetCombo();
+            int final = GameScoreData.CalculateFinalScore();
 
             if (saveScoreText != null) saveScoreText.text = $"Save Score: {save}";
             if (treatScoreText != null) treatScoreText.text = $"Treat Score: {treat}";
@@ -38,17 +38,11 @@ public class EndScreenUI : MonoBehaviour
         }
     }
 
-    // Hook this method up to your Retry Button's OnClick() event in the Inspector
     public void RetryGame()
     {
-        if (TaskManager.Instance != null)
-        {
-            Destroy(TaskManager.Instance.gameObject); // Clean up the persistent manager for a fresh run
-        }
         SceneManager.LoadScene(gameplaySceneName);
     }
 
-    // Hook this method up to your Quit Button's OnClick() event in the Inspector
     public void QuitGame()
     {
         Debug.Log("Quitting game...");

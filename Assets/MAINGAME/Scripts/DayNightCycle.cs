@@ -68,12 +68,6 @@ public class DayNightCycle : MonoBehaviour
     private void TriggerEndOfDay()
     {
         Debug.Log("Midnight reached! Loading End Screen...");
-        
-        if (TaskManager.Instance != null)
-        {
-            // Calculates final score in console log
-            TaskManager.Instance.CalculateFinalScore();
-        }
 
         // Make sure "EndScreen" matches the exact name of your End Screen scene in Build Settings!
         SceneManager.LoadScene("EndScreen");
