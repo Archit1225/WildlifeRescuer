@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [Tooltip("Type the exact name of your main game scene here")]
-    public string mainSceneName = "MainScene";
+    public string mainSceneName = "MainGame";
+    public string tutorialSceneName = "Tutorial";
+    public string startSceneName = "Start";
 
     private void Start()
     {
@@ -16,7 +18,14 @@ public class MainMenuController : MonoBehaviour
     {
         SceneManager.LoadScene(mainSceneName);
     }
-
+    public void LoadTutorialGame()
+    {
+        SceneManager.LoadScene(tutorialSceneName);
+    }
+    public void LoadStartScene()
+    {
+        SceneManager.LoadScene(startSceneName);
+    }
     public void QuitGame()
     {
         Application.Quit();
