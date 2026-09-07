@@ -26,8 +26,9 @@ public class Stag : MonoBehaviour
     public Transform trappedTrans;
     public GameObject bloodSpat;
     public bool trapStag;
+    public bool injureStag;
     private bool moveTowardsTrap = false;
-    private Trap targetTrap;
+    public Trap targetTrap;
 
     //States
     public enum AnimalState { Trapped, Eating, Idle, Roaming, Fleeing, Injured }
@@ -114,7 +115,7 @@ public class Stag : MonoBehaviour
 
         float randomChance = Random.Range(0f, 1f);
 
-        if (randomChance <= 0.3f)
+        if (randomChance <= 0.3f || injureStag)
         {
             // Not injured, run away
             ChangeState(AnimalState.Fleeing);

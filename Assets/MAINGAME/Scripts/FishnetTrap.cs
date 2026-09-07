@@ -76,7 +76,7 @@ public class FishnetTrap : Trap
                 trappedAnimal = animal; // Store the animal reference for when the net is removed
                 animal.GetTrappedInNet();
 
-                currentActiveTask = TaskManager.Instance.CreateTask($"Free the {animal.animalData.name}", transform, animal.animalData.name, 180f, 200);
+                if(TaskManager.Instance != null) currentActiveTask = TaskManager.Instance.CreateTask($"Free the {animal.animalData.name}", transform, animal.animalData.name, 180f, 200);
 
                 Vector3 calculatedScale = Vector3.one;
 
@@ -103,7 +103,7 @@ public class FishnetTrap : Trap
 
     public void OnNetRemoved()
     {
-        TaskManager.Instance.CompleteTask(currentActiveTask);
+        if (TaskManager.Instance != null) TaskManager.Instance.CompleteTask(currentActiveTask);
 
         if (trappedAnimal != null)
         {
