@@ -9,13 +9,19 @@ public class DayNightCycle : MonoBehaviour
 
     [Header("References")]
     public Light sunLight;
-    public Material skyboxMaterial;
+    public Material skyboxMaterial; // Keep your single Boxophobic material assigned here
     public string scoreScene = "ScoreScene";
 
     [Header("Sun Intensity/Color")]
     public AnimationCurve sunIntensityCurve;
     public Gradient sunColorGradient;
     public float maxSunIntensity = 1.2f;
+
+    [Header("Skybox Settings (Boxophobic)")]
+    [Tooltip("Pure white at noon, deep purple/blue at sunset, dark blue/black at midnight.")]
+    public Gradient skyboxColorGradient;
+    [Tooltip("Maintains brightness (1.0) during day, drops lower (e.g., 0.2) at night.")]
+    public AnimationCurve skyboxExposureCurve;
 
     [Header("Ambient Light")]
     public AnimationCurve ambientIntensityCurve;
@@ -27,11 +33,18 @@ public class DayNightCycle : MonoBehaviour
 
     private bool isNightMusicPlaying = false;
 
+    // Cached property IDs to eliminate string lookups in Update (Crucial for mobile VR performance)
+    private int tintColorPropID;
+    private int exposurePropID;
+
     private void Awake()
     {
         // 1. Wipe the static score bus clean the moment the scene starts
-        // This guarantees a fresh slate when hitting "Retry" from the End Screen
         GameScoreData.ResetData();
+
+        // Cache Boxophobic's internal shader property IDs
+        tintColorPropID = Shader.PropertyToID("_CubemapTintColor");
+        exposurePropID = Shader.PropertyToID("_CubemapExposure");
     }
 
     private void Start()
@@ -56,6 +69,7 @@ public class DayNightCycle : MonoBehaviour
         }
 
         UpdateSun();
+        UpdateSkybox(); // Handles the Tint and Exposure of your single Boxophobic material
         UpdateAmbient();
         if (controlFog) UpdateFog();
     }
@@ -68,11 +82,19 @@ public class DayNightCycle : MonoBehaviour
         float intensityMultiplier = sunIntensityCurve.Evaluate(timeOfDay);
         sunLight.intensity = intensityMultiplier * maxSunIntensity;
         sunLight.color = sunColorGradient.Evaluate(timeOfDay);
+    }
 
-        if (skyboxMaterial != null && skyboxMaterial.HasProperty("_SunSize"))
-        {
-            skyboxMaterial.SetFloat("_Exposure", Mathf.Lerp(0.3f, 1.3f, intensityMultiplier));
-        }
+    private void UpdateSkybox()
+    {
+        if (skyboxMaterial == null) return;
+
+        // Smoothly shift the sky tint based on the color gradient
+        Color targetSkyColor = skyboxColorGradient.Evaluate(timeOfDay);
+        skyboxMaterial.SetColor(tintColorPropID, targetSkyColor);
+
+        // Smoothly adjust shader exposure based on your curve profile
+        float targetExposure = skyboxExposureCurve.Evaluate(timeOfDay);
+        skyboxMaterial.SetFloat(exposurePropID, targetExposure);
     }
 
     private void UpdateAmbient()
@@ -89,8 +111,6 @@ public class DayNightCycle : MonoBehaviour
     private void TriggerEndOfDay()
     {
         Debug.Log("Midnight reached! Loading End Screen...");
-
-        // 2. Load the scene. Unity automatically garbage collects all active scene objects.
         SceneManager.LoadScene(scoreScene);
     }
 }
