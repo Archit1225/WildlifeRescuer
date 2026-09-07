@@ -2605,7 +2605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 920128003817724717, guid: a9e7d23f73872e640bbb5e0e131e8c43, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681106144210432700, guid: a9e7d23f73872e640bbb5e0e131e8c43, type: 3}
+      propertyPath: trapStag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6158241949670526844, guid: a9e7d23f73872e640bbb5e0e131e8c43, type: 3}
       propertyPath: m_LocalScale.x
