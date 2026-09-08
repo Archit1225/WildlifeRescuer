@@ -110,7 +110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5434387717895028004
 Transform:
   m_ObjectHideFlags: 0
@@ -146,6 +146,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BloodManager
   stag: {fileID: 4681106144210432700}
   treatmentPoints: 50
+  clothTip: 'Step 1: Grab the cloth from your kit to clean all blood splats.'
+  sprayTip: 'Step 2: Use the antiseptic spray on all cleaned wounds.'
+  bandageTip: 'Step 3: Wrap bandages around all sprayed wounds to finish healing.'
 --- !u!1 &573338182744873648
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +536,7 @@ MonoBehaviour:
   currentSprayHits: 0
   isSprayed: 0
   outlineMaterial: {fileID: 2100000, guid: 285639e9e1769704caf521e7b9df59e0, type: 2}
-  bandaidChildOnBody: {fileID: 0}
+  bandaidChildOnBody: {fileID: 429008611999872836}
   isBandaged: 0
 --- !u!1 &980757643527253453
 GameObject:
@@ -1500,7 +1503,7 @@ MonoBehaviour:
   currentSprayHits: 0
   isSprayed: 0
   outlineMaterial: {fileID: 2100000, guid: 285639e9e1769704caf521e7b9df59e0, type: 2}
-  bandaidChildOnBody: {fileID: 0}
+  bandaidChildOnBody: {fileID: 5686622817593427071}
   isBandaged: 0
 --- !u!1 &4421978556459314692
 GameObject:
@@ -2465,7 +2468,7 @@ MonoBehaviour:
   currentSprayHits: 0
   isSprayed: 0
   outlineMaterial: {fileID: 2100000, guid: 285639e9e1769704caf521e7b9df59e0, type: 2}
-  bandaidChildOnBody: {fileID: 0}
+  bandaidChildOnBody: {fileID: 7446286560054109916}
   isBandaged: 0
 --- !u!1 &8513205528624801702
 GameObject:
@@ -2638,6 +2641,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
+--- !u!1 &429008611999872836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575140377072967911, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
+  m_PrefabInstance: {fileID: 4218198163895277475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2630497452920875439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2164942374793772556, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
@@ -2721,6 +2729,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2164942374793772556, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
   m_PrefabInstance: {fileID: 6352520523627447867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7446286560054109916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575140377072967911, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
+  m_PrefabInstance: {fileID: 6352520523627447867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8184404725252400280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2794,6 +2807,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
+--- !u!1 &5686622817593427071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4575140377072967911, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
+  m_PrefabInstance: {fileID: 8184404725252400280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8043344420306115220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2164942374793772556, guid: 8bb888d70a893884aa71742d6adaf9ea, type: 3}
