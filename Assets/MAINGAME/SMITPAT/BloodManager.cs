@@ -11,6 +11,13 @@ public class BloodManager : MonoBehaviour
     [Header("Scoring")]
     public int treatmentPoints = 50;
 
+    [Header("Treatment Tips")]
+    [TextArea] public string clothTip = "Step 1: Grab the cloth from your kit to clean all blood splats.";
+    [TextArea] public string sprayTip = "Step 2: Use the antiseptic spray on all cleaned wounds.";
+    [TextArea] public string bandageTip = "Step 3: Wrap bandages around all sprayed wounds to finish healing.";
+
+    private bool playerIsNear = false;
+
     private void Start()
     {
         bloodNodes = GetComponentsInChildren<BloodNode>(true);
@@ -34,10 +41,58 @@ public class BloodManager : MonoBehaviour
         if (bandagePhaseComplete)
         {
             Debug.Log("Treatment Done!");
+            
+            // Clear the tip when treatment is fully finished
+            if (TipManager.Instance != null && playerIsNear)
+            {
+                TipManager.Instance.HideTip();
+            }
+
             stag.Healed();
             gameObject.SetActive(false);
         }
     }
+
+    #region Proximity Detection for Tips
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsNear = true;
+            UpdateCurrentTip();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerIsNear = false;
+            if (TipManager.Instance != null)
+            {
+                TipManager.Instance.HideTip();
+            }
+        }
+    }
+
+    private void UpdateCurrentTip()
+    {
+        if (!playerIsNear || TipManager.Instance == null) return;
+
+        if (!clothPhaseComplete)
+        {
+            TipManager.Instance.ShowTip(clothTip);
+        }
+        else if (!sprayPhaseComplete)
+        {
+            TipManager.Instance.ShowTip(sprayTip);
+        }
+        else if (!bandagePhaseComplete)
+        {
+            TipManager.Instance.ShowTip(bandageTip);
+        }
+    }
+    #endregion
 
     private void CheckClothPhase()
     {
@@ -51,6 +106,9 @@ public class BloodManager : MonoBehaviour
         {
             clothPhaseComplete = true;
             Debug.Log("All blood splats cleaned! Ready for Spray.");
+            
+            // Instantly update UI tip to Step 2 (Spray)
+            UpdateCurrentTip();
         }
     }
 
@@ -66,6 +124,9 @@ public class BloodManager : MonoBehaviour
         {
             sprayPhaseComplete = true;
             Debug.Log("All patches sprayed! Ready for Bandage phase.");
+
+            // Instantly update UI tip to Step 3 (Bandage)
+            UpdateCurrentTip();
         }
     }
 
