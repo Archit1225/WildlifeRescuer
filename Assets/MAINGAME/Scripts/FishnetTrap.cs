@@ -105,6 +105,17 @@ public class FishnetTrap : Trap
     {
         if (TaskManager.Instance != null) TaskManager.Instance.CompleteTask(currentActiveTask);
 
+        // ADD THIS: Tell the tip trigger to hide the panel and lock out future tips for this trap
+        TaskTipTrigger tipTrigger = GetComponent<TaskTipTrigger>();
+        if (tipTrigger != null)
+        {
+            tipTrigger.CompleteTask();
+        }
+        else if (TipManager.Instance != null)
+        {
+            TipManager.Instance.HideTip(); // Fallback safety net
+        }
+
         if (trappedAnimal != null)
         {
             trappedAnimal.FreeFromTrap();
