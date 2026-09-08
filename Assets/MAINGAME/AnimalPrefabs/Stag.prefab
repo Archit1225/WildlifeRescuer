@@ -277,6 +277,7 @@ MonoBehaviour:
   bloodSpat: {fileID: 528042938238070764}
   trapStag: 0
   injureStag: 0
+  targetTrap: {fileID: 0}
 --- !u!195 &8600764752389718721
 NavMeshAgent:
   m_ObjectHideFlags: 0
