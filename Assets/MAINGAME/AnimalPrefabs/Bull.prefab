@@ -1883,6 +1883,7 @@ MonoBehaviour:
   bloodSpat: {fileID: 8782292357247896228}
   trapStag: 0
   injureStag: 0
+  targetTrap: {fileID: 0}
 --- !u!195 &5972066227415513764
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1946,8 +1947,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.9648137, z: 2.750599}
-  m_Center: {x: 0, y: 0.39943165, z: -0.12549019}
+  m_Size: {x: 1.7567377, y: 0.9648137, z: 4.823302}
+  m_Center: {x: 0.0200612, y: 0.39943162, z: -0.16981389}
 --- !u!54 &4188866536782908223
 Rigidbody:
   m_ObjectHideFlags: 0
