@@ -228,6 +228,7 @@ MonoBehaviour:
   bloodSpat: {fileID: 6092103124944550399}
   trapStag: 0
   injureStag: 0
+  targetTrap: {fileID: 0}
 --- !u!195 &2230272957822315301
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6e15dc7f371cdd84a92554806d014a94, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2229,7 +2230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf25fd459f5ad346a8abaf264c1d16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BloodManager
-  stag: {fileID: 0}
+  stag: {fileID: 3048481094755187078}
   treatmentPoints: 50
 --- !u!1 &6161928869409876890
 GameObject:

@@ -41,6 +41,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5278533999965603591}
     m_Modifications:
+    - target: {fileID: 1220215352875261580, guid: e2a968add3dd892429587e885b685fac, type: 3}
+      propertyPath: animalRenderer
+      value: 
+      objectReference: {fileID: 1483197205736378330}
     - target: {fileID: 3630686291077643617, guid: e2a968add3dd892429587e885b685fac, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -180,6 +184,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103fce1d5d6e70941be4d29536d193b4, type: 3}
+--- !u!137 &1483197205736378330 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7030689923127303187, guid: 103fce1d5d6e70941be4d29536d193b4, type: 3}
+  m_PrefabInstance: {fileID: 8432822335512187849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7937996680622563441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1958514777673429944, guid: 103fce1d5d6e70941be4d29536d193b4, type: 3}

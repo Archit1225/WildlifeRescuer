@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 2403366795039582857}
   - component: {fileID: 3380043653370853101}
   - component: {fileID: 1136886694275857388}
-  - component: {fileID: 3258189725645290310}
   m_Layer: 0
   m_Name: BearTrap
   m_TagString: Traps
@@ -250,13 +249,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5938553717381328577}
   - {fileID: 4341951997820996036}
   - {fileID: 5855680987415309011}
   - {fileID: 7962543284444066232}
+  - {fileID: 8401875288660769067}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8962238323364173952
@@ -323,6 +323,7 @@ MonoBehaviour:
   isActive: 1
   crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
   placePoint: {fileID: 1190749335850418798}
+  invisibility: {fileID: 1220215352875261580}
   timeLimit: 90
   bonusPoints: 50
 --- !u!65 &1136886694275857388
@@ -346,18 +347,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.114884734, z: 0.76695836}
   m_Center: {x: 0, y: 0.092660904, z: 0.0107726455}
---- !u!114 &3258189725645290310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4816066040495627517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37af8781fe4b8ac438946f8231588a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyGameObject
 --- !u!1 &5353473724558672197
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +437,74 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5404333510304793117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8401875288660769067}
+  - component: {fileID: 1220215352875261580}
+  - component: {fileID: 4509689536305499365}
+  m_Layer: 0
+  m_Name: Invisibility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8401875288660769067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404333510304793117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3630686291077643617}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1220215352875261580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404333510304793117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e69de47b38c7d459ddd1a9aa2c21bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrappedAnimalVisibility
+  animalRenderer: {fileID: 0}
+  transparentMaterial: {fileID: 2100000, guid: 5887179b4c68ef04494fa51b7c11342c, type: 2}
+--- !u!135 &4509689536305499365
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404333510304793117}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 1.21, z: 0}
 --- !u!1 &8498304748802047531
 GameObject:
   m_ObjectHideFlags: 0

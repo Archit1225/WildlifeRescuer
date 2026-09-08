@@ -41,18 +41,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5278533999965603591}
     m_Modifications:
-    - target: {fileID: 3630686291077643617, guid: e2a968add3dd892429587e885b685fac, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3630686291077643617, guid: e2a968add3dd892429587e885b685fac, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3630686291077643617, guid: e2a968add3dd892429587e885b685fac, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 1220215352875261580, guid: e2a968add3dd892429587e885b685fac, type: 3}
+      propertyPath: animalRenderer
+      value: 
+      objectReference: {fileID: 770487891352046882}
     - target: {fileID: 3630686291077643617, guid: e2a968add3dd892429587e885b685fac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.766
@@ -97,7 +89,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BearTrap
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3258189725645290310, guid: e2a968add3dd892429587e885b685fac, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -175,5 +168,10 @@ PrefabInstance:
 --- !u!4 &410929387217574234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6158241949670526844, guid: a9e7d23f73872e640bbb5e0e131e8c43, type: 3}
+  m_PrefabInstance: {fileID: 5820219126061864486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &770487891352046882 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6518046573050288900, guid: a9e7d23f73872e640bbb5e0e131e8c43, type: 3}
   m_PrefabInstance: {fileID: 5820219126061864486}
   m_PrefabAsset: {fileID: 0}

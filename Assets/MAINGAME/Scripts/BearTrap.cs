@@ -5,6 +5,7 @@ public class BearTrap : Trap
     private Animator anim;
     public GameObject crowbarPrefab;
     public GameObject placePoint;
+    public TrappedAnimalVisibility invisibility;
     private Stag stag;
     private ActiveTask currentActiveTask;
 
@@ -22,6 +23,7 @@ public class BearTrap : Trap
         Debug.Log("Trap disarmed");
         TaskManager.Instance.CompleteTask(currentActiveTask);
         
+        invisibility.OnTrapDisarmed();
         anim.Play("UnTrap");
         stag.FreeFromTrap();
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
