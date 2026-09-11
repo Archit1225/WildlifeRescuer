@@ -123,14 +123,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755818351858996758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1, y: 1.629, z: -0.35}
+  m_LocalRotation: {x: 0.02848452, y: -0.0059005534, z: -0.19819488, w: 0.9797309}
+  m_LocalPosition: {x: -2.0994854, y: 1.5128974, z: -0.34993175}
   m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3693711197745373775}
   m_Father: {fileID: 7974920930178733911}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.065, y: -1.311, z: -22.908}
 --- !u!1 &1011631707055527801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,11 +2457,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9212804125487727156}
-  - {fileID: 850531452667070214}
   - {fileID: 520752845383045927}
-  - {fileID: 7327495189871267105}
-  - {fileID: 2298147267674981338}
+  - {fileID: 850531452667070214}
   - {fileID: 3100858880611584253}
+  - {fileID: 2298147267674981338}
+  - {fileID: 7327495189871267105}
   m_Father: {fileID: 5151412034153982015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4466925854753832660
@@ -2481,6 +2481,7 @@ MonoBehaviour:
   clothTip: 'Step 1: Grab the cloth from your kit to clean all blood splats.'
   sprayTip: 'Step 2: Use the antiseptic spray on all cleaned wounds.'
   bandageTip: 'Step 3: Wrap bandages around all sprayed wounds to finish healing.'
+  objDel: []
 --- !u!135 &5613083734235020337
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2594,31 +2595,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.16
+      value: -3.1580026
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 1.5575727
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.49
+      value: 1.4900001
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9314265
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
+      value: 0.000000020356984
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.000000007953927
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.36392936
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2630,7 +2631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 42.683
       objectReference: {fileID: 0}
     - target: {fileID: 1552800568260005235, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -2638,7 +2639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4076302040161322111, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_Name
-      value: Blood_3
+      value: Blood_2
       objectReference: {fileID: 0}
     - target: {fileID: 4076302040161322111, guid: 902ab033ba12e554db4d392d9b53401d, type: 3}
       propertyPath: m_IsActive
@@ -2705,7 +2706,7 @@ MonoBehaviour:
   currentSprayHits: 0
   isSprayed: 0
   outlineMaterial: {fileID: 2100000, guid: 285639e9e1769704caf521e7b9df59e0, type: 2}
-  bandaidChildOnBody: {fileID: 4955433473525928906}
+  bandaidChildOnBody: {fileID: 4508642760243518769}
   isBandaged: 0
 --- !u!1001 &6353209641653722376
 PrefabInstance:
@@ -2729,31 +2730,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.56
+      value: -1.626
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.67
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.92
+      value: 1.9200008
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.97519314
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
+      value: 0.000000021313543
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000004837889
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.22135593
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2765,7 +2766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -25.577
       objectReference: {fileID: 0}
     - target: {fileID: 6045681571810236942, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -2773,7 +2774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8625301153994142735, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_Name
-      value: Blood_2
+      value: Blood_3
       objectReference: {fileID: 0}
     - target: {fileID: 8625301153994142735, guid: 65e28ea2becdbed45953f47989faf41c, type: 3}
       propertyPath: m_IsActive
@@ -2840,7 +2841,7 @@ MonoBehaviour:
   currentSprayHits: 0
   isSprayed: 0
   outlineMaterial: {fileID: 2100000, guid: 285639e9e1769704caf521e7b9df59e0, type: 2}
-  bandaidChildOnBody: {fileID: 4508642760243518769}
+  bandaidChildOnBody: {fileID: 4955433473525928906}
   isBandaged: 0
 --- !u!1001 &6712186213292996729
 PrefabInstance:
@@ -2852,43 +2853,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.26
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.26
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.26
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.05
+      value: -2.0525806
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.52
+      value: 1.510537
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.31
+      value: -0.31000033
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9837
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
+      value: 0.00000002149945
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.0000000039300376
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.17981754
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2900,7 +2901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -20.718
       objectReference: {fileID: 0}
     - target: {fileID: 2520904486682720845, guid: d24e438ce6992ce4a9ac8e7696619e5f, type: 3}
       propertyPath: m_ConstrainProportionsScale

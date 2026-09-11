@@ -325,6 +325,7 @@ MonoBehaviour:
   crowbarPrefab: {fileID: 9220159224697503701, guid: 2d3506c97bde21b498ef81746d40415f, type: 3}
   placePoint: {fileID: 1190749335850418798}
   invisibility: {fileID: 1220215352875261580}
+  object2Del: []
   timeLimit: 90
   bonusPoints: 50
 --- !u!65 &1136886694275857388
@@ -747,7 +748,7 @@ HingeJoint:
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: -56.084705
+    min: -68.82509
     max: 10.8452
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -777,31 +778,7 @@ MonoBehaviour:
   startStep: 0
   OnMax:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3380043653370853101}
-        m_TargetAssemblyTypeName: BearTrap, Assembly-CSharp
-        m_MethodName: OnLeverPlaced
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8498304748802047531}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnMid:
     m_PersistentCalls:
       m_Calls: []

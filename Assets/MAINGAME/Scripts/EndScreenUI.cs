@@ -30,7 +30,7 @@ public class EndScreenUI : MonoBehaviour
 
         if (saveScoreText != null) saveScoreText.text = $"Save Score: {save}";
         if (treatScoreText != null) treatScoreText.text = $"Treat Score: {treat}";
-        if (comboText != null) comboText.text = $"Combo Multiplier: x{combo}";
+        if (comboText != null) comboText.text = $"Combo: x{combo}";
         if (finalScoreText != null) finalScoreText.text = $"Total Score: {final}";
     }
 

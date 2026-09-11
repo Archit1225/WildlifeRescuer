@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.AI;
 
 public class Stag : MonoBehaviour
@@ -10,6 +12,7 @@ public class Stag : MonoBehaviour
     private NavMeshAgent navAgent;
     private Animator animator;
     public Transform player;
+    
 
     public LayerMask groundLayer, obstacleLayer;
 
@@ -95,7 +98,6 @@ public class Stag : MonoBehaviour
     {
         //Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
         bloodSpat.SetActive(true);
-        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200, this);
 
         if (!navAgent.isStopped)
         {
@@ -214,9 +216,10 @@ public class Stag : MonoBehaviour
         {
             Vector3 directionToPlayer = (transform.position - player.position).normalized;
             Vector3 runPoint = transform.position + (directionToPlayer * animalData.fleeDistance);
-
+            Debug.Log("Outside Run");
             if (NavMesh.SamplePosition(runPoint, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
+                Debug.Log("Inside Run");
                 navAgent.SetDestination(hit.position);
                 walkPointSet = true;
             }
@@ -277,7 +280,7 @@ public class Stag : MonoBehaviour
         ChangeState(AnimalState.Trapped);
         canWalk = false;
         navAgent.isStopped = true;
-        navAgent.Warp(trapTransform.position);
+        //navAgent.Warp(trapTransform.position);
         trapTransform.position = trappedTrans.position;
     }
     public void GetTrappedInNet()

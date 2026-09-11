@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BloodManager : MonoBehaviour
@@ -17,10 +18,18 @@ public class BloodManager : MonoBehaviour
     [TextArea] public string bandageTip = "Step 3: Wrap bandages around all sprayed wounds to finish healing.";
 
     private bool playerIsNear = false;
+    private ActiveTask currentActiveTask;
+    public List<GameObject> objDel = new List<GameObject>();
 
     private void Start()
     {
         bloodNodes = GetComponentsInChildren<BloodNode>(true);
+    }
+
+    private void OnEnable()
+    {
+        objDel.Add(this.gameObject);
+        currentActiveTask = TaskManager.Instance.CreateTask($"Free the {stag.animalData.name}", transform, stag.animalData.name, 180f, 200, objDel);
     }
 
     private void Update()
@@ -145,7 +154,7 @@ public class BloodManager : MonoBehaviour
 
             if (TaskManager.Instance != null && stag != null)
             {
-                TaskManager.Instance.CompleteTreatment(stag.animalData.speciesName, treatmentPoints);
+                TaskManager.Instance.CompleteTreatment(stag.animalData.speciesName, treatmentPoints, currentActiveTask);
             }
         }
     }

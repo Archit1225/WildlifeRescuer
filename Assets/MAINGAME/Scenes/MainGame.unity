@@ -2273,7 +2273,7 @@ Transform:
   m_GameObject: {fileID: 484940991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.102417, y: -8.060135, z: -523.27}
+  m_LocalPosition: {x: -2.102417, y: -8.060135, z: -538.5}
   m_LocalScale: {x: 705.1, y: 223.8, z: 22.46}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4310,15 +4310,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7942002210973373747, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7942002210973373747, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7942002210973373747, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7942002210973373747, guid: a5226a72c9553294abfe172a458b5805, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5499,6 +5499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1329810419}
   - component: {fileID: 1329810418}
+  - component: {fileID: 1329810420}
   m_Layer: 0
   m_Name: DayNightManager
   m_TagString: Untagged
@@ -5513,7 +5514,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329810417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b0f698a759f1a34f81f1271747e0df4, type: 3}
   m_Name: 
@@ -5813,6 +5814,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1329810420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329810417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31baeef3d1bfd854fb71e1be4e736cb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle2
+  dayLengthInSeconds: 420
+  timeOfDay: 0.25
+  scoreScene: ScoreMenu
 --- !u!1001 &1372931033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9097,7 +9113,7 @@ Transform:
   m_GameObject: {fileID: 2118303149}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -297.10242, y: -8.060135, z: -298.27005}
+  m_LocalPosition: {x: -302.1, y: -8.060135, z: -298.27005}
   m_LocalScale: {x: 705.0999, y: 223.8, z: 22.459997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77756,7 +77772,7 @@ Transform:
   m_GameObject: {fileID: 1291338072629414171}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -321.1584, y: 135.16275, z: -124.99674}
+  m_LocalPosition: {x: -321.1584, y: 136.1, z: -124.99674}
   m_LocalScale: {x: 3932.1748, y: 3932.1748, z: 3932.1748}
   m_ConstrainProportionsScale: 0
   m_Children: []

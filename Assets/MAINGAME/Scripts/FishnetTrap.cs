@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static Stag;
 
 public class FishnetTrap : Trap
 {
     [Header("Net Settings")]
     public GameObject netChild; // Drag the child net GameObject here
     public float dropHeight = 8f;
+    public List<GameObject> object2Del = new List<GameObject>();
 
     [Header("Rope Cutting System")]
     public Renderer[] ropeRenderers; // Drag the 4 capsule collider children here
@@ -75,8 +78,9 @@ public class FishnetTrap : Trap
             {
                 trappedAnimal = animal; // Store the animal reference for when the net is removed
                 animal.GetTrappedInNet();
-
-                if(TaskManager.Instance != null) currentActiveTask = TaskManager.Instance.CreateTask($"Free the {animal.animalData.name}", transform, animal.animalData.name, 180f, 200, animal);
+                object2Del.Add(this.gameObject);
+                object2Del.Add(animal.gameObject);
+                if (TaskManager.Instance != null) currentActiveTask = TaskManager.Instance.CreateTask($"Free the {animal.animalData.name}", transform, animal.animalData.name, 180f, 200, object2Del);
 
                 Vector3 calculatedScale = Vector3.one;
 

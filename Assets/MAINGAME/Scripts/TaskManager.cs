@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class ActiveTask
     public int maxBonusPoints;
     public int basePoints = 100;
     public GameObject waypointInstance;
-    public Stag stagReference; 
+    public List<GameObject> objs2Del = new List<GameObject>(); // Modified to accept an array
 }
 
 public class TaskManager : MonoBehaviour
@@ -53,7 +54,8 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints, Stag linkedStag)
+    // Modified parameter: GameObject[] objectsToDelete
+    public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints, List<GameObject> objectsToDelete)
     {
         ActiveTask newTask = new ActiveTask
         {
@@ -63,7 +65,7 @@ public class TaskManager : MonoBehaviour
             timeLimit = timeAllowed,
             timeRemaining = timeAllowed,
             maxBonusPoints = bonusPoints,
-            stagReference = linkedStag 
+            objs2Del = objectsToDelete
         };
 
         GameObject markerObj = Instantiate(waypointPrefab, waypointCanvas);
@@ -72,7 +74,6 @@ public class TaskManager : MonoBehaviour
         newTask.waypointInstance = markerObj;
 
         currentTasks.Add(newTask);
-        //Debug.Log($"New Task: {name}. Get there fast!");
 
         return newTask;
     }
@@ -97,7 +98,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public void CompleteTreatment(string speciesName, int pointsEarned)
+    public void CompleteTreatment(string speciesName, int pointsEarned, ActiveTask taskToComplete)
     {
         GameScoreData.treatScore += pointsEarned;
 
@@ -106,17 +107,27 @@ public class TaskManager : MonoBehaviour
             GameScoreData.uniqueSpeciesAssisted.Add(speciesName);
         }
         Debug.Log($"Treatment Complete! Earned {pointsEarned} treat points.");
+
+        if (taskToComplete != null && currentTasks.Contains(taskToComplete))
+        {
+            CleanupTask(taskToComplete);
+        }
     }
 
     private void FailTask(ActiveTask task)
     {
         Debug.Log($"Task {task.taskName} time expired! Animal lost, but no points deducted.");
 
-        // Point penalty has been removed.
-
-        if (task.stagReference != null)
+        // Modified to loop through the array and destroy each object safely
+        if (task.objs2Del != null)
         {
-            Destroy(task.stagReference.gameObject);
+            foreach (GameObject obj in task.objs2Del)
+            {
+                if (obj != null)
+                {
+                    Destroy(obj);
+                }
+            }
         }
 
         CleanupTask(task);

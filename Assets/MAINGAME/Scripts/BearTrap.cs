@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BearTrap : Trap 
 {
@@ -6,6 +8,7 @@ public class BearTrap : Trap
     public GameObject crowbarPrefab;
     public GameObject placePoint;
     public TrappedAnimalVisibility invisibility;
+    public List<GameObject> object2Del = new List<GameObject>();
     
     [Header("Task Settings")]
     public float timeLimit = 90f;
@@ -83,7 +86,8 @@ public class BearTrap : Trap
                 if (animalStag != null)
                 {
                     animalStag.GetTrapped(transform);
-
+                    object2Del.Add(this.gameObject);
+                    object2Del.Add(animalStag.gameObject);
                     // 4. CREATE TASK & SAVE THE REFERENCE
                     if (TaskManager.Instance != null)
                     {
@@ -93,7 +97,7 @@ public class BearTrap : Trap
                             animalStag.animalData.name, 
                             timeLimit, 
                             bonusPoints,
-                            animalStag
+                            object2Del
                         );
                     }
                 }
