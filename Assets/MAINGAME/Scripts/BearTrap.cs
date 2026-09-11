@@ -6,12 +6,13 @@ public class BearTrap : Trap
     public GameObject crowbarPrefab;
     public GameObject placePoint;
     public TrappedAnimalVisibility invisibility;
-    private Stag stag;
-    private ActiveTask currentActiveTask;
-
+    
     [Header("Task Settings")]
     public float timeLimit = 90f;
     public int bonusPoints = 50;
+
+    private Stag animalStag;
+    private ActiveTask currentActiveTask; // TRACKS THE TASK INSTANCE
 
     private void Awake()
     {
@@ -22,12 +23,13 @@ public class BearTrap : Trap
     {
         Debug.Log("Trap disarmed");
         
-        if (TaskManager.Instance != null)
+        // 1. COMPLETE THE TASK USING THE SAVED REFERENCE
+        if (TaskManager.Instance != null && currentActiveTask != null)
         {
             TaskManager.Instance.CompleteTask(currentActiveTask);
         }
 
-        // Hide and complete the world-space tip when the trap is solved
+        // 2. Hide and complete the world-space tip when the trap is solved
         TaskTipTrigger tipTrigger = GetComponent<TaskTipTrigger>();
         if (tipTrigger != null)
         {
@@ -48,9 +50,10 @@ public class BearTrap : Trap
             anim.Play("UnTrap");
         }
 
-        if (stag != null)
+        // 3. FREE THE ANIMAL
+        if (animalStag != null)
         {
-            stag.FreeFromTrap();
+            animalStag.FreeFromTrap();
         }
 
         Instantiate(crowbarPrefab, transform.position, transform.rotation);
@@ -59,6 +62,8 @@ public class BearTrap : Trap
         {
             placePoint.SetActive(false);
         }
+
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,14 +79,21 @@ public class BearTrap : Trap
             {
                 if (placePoint != null) placePoint.SetActive(true);
                 
-                stag = other.GetComponent<Stag>();
-                if (stag != null)
+                animalStag = other.GetComponent<Stag>();
+                if (animalStag != null)
                 {
-                    stag.GetTrapped(transform);
+                    animalStag.GetTrapped(transform);
 
+                    // 4. CREATE TASK & SAVE THE REFERENCE
                     if (TaskManager.Instance != null)
                     {
-                        currentActiveTask = TaskManager.Instance.CreateTask($"Free the {stag.animalData.name}", transform, stag.animalData.name, timeLimit, bonusPoints);
+                        currentActiveTask = TaskManager.Instance.CreateTask(
+                            $"Free the {animalStag.animalData.name}", 
+                            transform, 
+                            animalStag.animalData.name, 
+                            timeLimit, 
+                            bonusPoints
+                        );
                     }
                 }
             }
