@@ -1325,6 +1325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BloodManager
   stag: {fileID: 7605578758923656599}
   treatmentPoints: 50
+  clothTip: 'Step 1: Grab the cloth from your kit to clean all blood splats.'
+  sprayTip: 'Step 2: Use the antiseptic spray on all cleaned wounds.'
+  bandageTip: 'Step 3: Wrap bandages around all sprayed wounds to finish healing.'
 --- !u!1 &4257630303771445659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,7 +2424,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: da9323789430fd349a2e10086e7cbfe3, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

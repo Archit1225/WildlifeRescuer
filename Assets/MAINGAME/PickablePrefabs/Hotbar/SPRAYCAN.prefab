@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6746029529399856588}
   - component: {fileID: -1843804102854146798}
   - component: {fileID: 4502154494545314160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SPRAYCAN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
