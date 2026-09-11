@@ -9,31 +9,23 @@ public class TipManager : MonoBehaviour
     public GameObject tipPanel;
     public TextMeshProUGUI tipText;
 
-    [Header("VR Follow Settings")]
-    [Tooltip("Drag Main Camera / CenterEyeAnchor here. If left empty, it auto-finds Camera.main.")]
+    [Header("World Anchor Settings")]
     public Transform playerCamera; 
-    
-    // X: right(+)/left(-), Y: up(+)/down(-), Z: forward distance
-    public Vector3 offset = new Vector3(0.3f, -0.2f, 1.2f); 
-    public float followSpeed = 5f;
+    public Vector3 worldOffset = new Vector3(0f, 1.5f, 0f); // How high above the animal/trap it floats
+    public float followSpeed = 10f;
+
+    private Transform currentTarget;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
 
         if (tipPanel != null) tipPanel.SetActive(false);
     }
 
     private void Start()
     {
-        // Auto-assign camera if unassigned in Inspector
         if (playerCamera == null && Camera.main != null)
         {
             playerCamera = Camera.main.transform;
@@ -42,37 +34,45 @@ public class TipManager : MonoBehaviour
 
     private void Update()
     {
-        // Only move when the tip panel is active
         if (tipPanel != null && tipPanel.activeSelf)
         {
-            // Backup check in case Camera was initialized late
             if (playerCamera == null && Camera.main != null)
             {
                 playerCamera = Camera.main.transform;
             }
 
+            // Follow the animal/trap position smoothly
+            if (currentTarget != null)
+            {
+                Vector3 targetPos = currentTarget.position + worldOffset;
+                transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * followSpeed);
+            }
+
+            // Billboard: Always face the player camera
             if (playerCamera != null)
             {
-                // Calculate position relative to where headset is looking
-                Vector3 targetPosition = playerCamera.position + playerCamera.TransformDirection(offset);
-                
-                // Smoothly slide towards target position
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
-
-                // Rotate to face the player
-                transform.rotation = Quaternion.LookRotation(transform.position - playerCamera.position);
+                transform.LookAt(playerCamera);
+                transform.Rotate(0, 180, 0); // Flips text so it reads correctly facing the player
             }
         }
     }
 
-    public void ShowTip(string message)
+    public void ShowTip(string message, Transform targetTransform)
     {
+        currentTarget = targetTransform;
         if (tipText != null) tipText.text = message;
         if (tipPanel != null) tipPanel.SetActive(true);
+
+        // Snap instantly to position on open so it doesn't glide from far away
+        if (currentTarget != null)
+        {
+            transform.position = currentTarget.position + worldOffset;
+        }
     }
 
     public void HideTip()
     {
         if (tipPanel != null) tipPanel.SetActive(false);
+        currentTarget = null;
     }
 }

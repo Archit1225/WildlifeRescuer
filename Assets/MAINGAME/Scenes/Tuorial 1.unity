@@ -568,8 +568,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   tipPanel: {fileID: 1754262322}
   tipText: {fileID: 353990857}
   playerCamera: {fileID: 206173261}
-  offset: {x: 0.7, y: -0.4, z: 1.2}
+  worldOffset: {x: 0, y: 1.5, z: 0}
   followSpeed: 5
 --- !u!114 &1182461525
 MonoBehaviour:

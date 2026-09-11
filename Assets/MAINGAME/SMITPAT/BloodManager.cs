@@ -81,15 +81,15 @@ public class BloodManager : MonoBehaviour
 
         if (!clothPhaseComplete)
         {
-            TipManager.Instance.ShowTip(clothTip);
+            TipManager.Instance.ShowTip(clothTip, transform); // Pass this animal's transform
         }
         else if (!sprayPhaseComplete)
         {
-            TipManager.Instance.ShowTip(sprayTip);
+            TipManager.Instance.ShowTip(sprayTip, transform);
         }
         else if (!bandagePhaseComplete)
         {
-            TipManager.Instance.ShowTip(bandageTip);
+            TipManager.Instance.ShowTip(bandageTip, transform);
         }
     }
     #endregion

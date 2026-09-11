@@ -21,14 +21,44 @@ public class BearTrap : Trap
     public void OnLeverPlaced()
     {
         Debug.Log("Trap disarmed");
-        TaskManager.Instance.CompleteTask(currentActiveTask);
         
-        invisibility.OnTrapDisarmed();
-        anim.Play("UnTrap");
-        stag.FreeFromTrap();
-        Instantiate(crowbarPrefab, transform.position, transform.rotation);
-        placePoint.SetActive(false);
+        if (TaskManager.Instance != null)
+        {
+            TaskManager.Instance.CompleteTask(currentActiveTask);
+        }
 
+        // Hide and complete the world-space tip when the trap is solved
+        TaskTipTrigger tipTrigger = GetComponent<TaskTipTrigger>();
+        if (tipTrigger != null)
+        {
+            tipTrigger.CompleteTask();
+        }
+        else if (TipManager.Instance != null)
+        {
+            TipManager.Instance.HideTip();
+        }
+        
+        if (invisibility != null)
+        {
+            invisibility.OnTrapDisarmed();
+        }
+
+        if (anim != null)
+        {
+            anim.Play("UnTrap");
+        }
+
+        if (stag != null)
+        {
+            stag.FreeFromTrap();
+        }
+
+        Instantiate(crowbarPrefab, transform.position, transform.rotation);
+        
+        if (placePoint != null)
+        {
+            placePoint.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,14 +72,17 @@ public class BearTrap : Trap
 
             if (other.CompareTag("Animal"))
             {
-                placePoint.SetActive(true);
+                if (placePoint != null) placePoint.SetActive(true);
+                
                 stag = other.GetComponent<Stag>();
                 if (stag != null)
                 {
                     stag.GetTrapped(transform);
 
-                    currentActiveTask = TaskManager.Instance.CreateTask($"Free the {stag.animalData.name}", transform, stag.animalData.name, 180f, 200);
-                    //TaskManager.Instance.CreateTask("Bear Trap Rescue", transform, stag.animalData.speciesName, timeLimit, bonusPoints);
+                    if (TaskManager.Instance != null)
+                    {
+                        currentActiveTask = TaskManager.Instance.CreateTask($"Free the {stag.animalData.name}", transform, stag.animalData.name, timeLimit, bonusPoints);
+                    }
                 }
             }
         }

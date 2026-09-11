@@ -9,17 +9,15 @@ public class TaskTipTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Make sure your VR Player/Hands have the tag "Player"
-        if (other.CompareTag("Player") && !isTaskFinished)
+       if (other.CompareTag("Player") && !isTaskFinished)
         {
-            TipManager.Instance.ShowTip(tipMessage);
+            TipManager.Instance.ShowTip(tipMessage, transform); // Pass this trap's transform
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Optional: Hide the tip if the player walks away without finishing the task
-        if (other.CompareTag("Player") && !isTaskFinished)
+       if (other.CompareTag("Player") && !isTaskFinished)
         {
             TipManager.Instance.HideTip();
         }
