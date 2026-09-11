@@ -1156,7 +1156,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5102079481294386909}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1829,7 +1829,6 @@ GameObject:
   - component: {fileID: 5972066227415513764}
   - component: {fileID: 7650592303834509063}
   - component: {fileID: 3858359810800753025}
-  - component: {fileID: 4188866536782908223}
   m_Layer: 0
   m_Name: Bull
   m_TagString: Animal
@@ -1875,7 +1874,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   isDynamicallySpawned: 0
   despawnDistance: 45
   raycastSource: {fileID: 920200969765469921}
@@ -1949,33 +1948,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7567377, y: 0.9648137, z: 4.823302}
   m_Center: {x: 0.0200612, y: 0.39943162, z: -0.16981389}
---- !u!54 &4188866536782908223
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7481624219472642619}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &7593792780528870718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,6 +2435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7974920930178733911}
   - component: {fileID: 4466925854753832660}
+  - component: {fileID: 5613083734235020337}
   m_Layer: 0
   m_Name: BloodSplat
   m_TagString: Untagged
@@ -2508,6 +2481,27 @@ MonoBehaviour:
   clothTip: 'Step 1: Grab the cloth from your kit to clean all blood splats.'
   sprayTip: 'Step 2: Use the antiseptic spray on all cleaned wounds.'
   bandageTip: 'Step 3: Wrap bandages around all sprayed wounds to finish healing.'
+--- !u!135 &5613083734235020337
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8782292357247896228}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 8.19
+  m_Center: {x: 0, y: 3.15, z: 0}
 --- !u!1 &9069402063282596070
 GameObject:
   m_ObjectHideFlags: 0

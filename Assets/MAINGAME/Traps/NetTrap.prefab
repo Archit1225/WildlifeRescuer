@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 6434812406294019254}
   - component: {fileID: 4482439440212592092}
   - component: {fileID: 3508529988931525635}
+  - component: {fileID: 516530051808560024}
   m_Layer: 0
   m_Name: NetTrap
   m_TagString: Traps
@@ -713,6 +714,33 @@ MonoBehaviour:
   - {fileID: 6653309975916732792}
   timeLimit: 60
   bonusPoints: 50
+--- !u!54 &516530051808560024
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675335685491418004}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8154178137852034039
 GameObject:
   m_ObjectHideFlags: 0

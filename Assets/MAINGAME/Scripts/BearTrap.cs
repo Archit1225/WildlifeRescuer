@@ -56,7 +56,7 @@ public class BearTrap : Trap
             animalStag.FreeFromTrap();
         }
 
-        Instantiate(crowbarPrefab, transform.position, transform.rotation);
+        //Instantiate(crowbarPrefab, transform.position, transform.rotation);
         
         if (placePoint != null)
         {
@@ -92,7 +92,8 @@ public class BearTrap : Trap
                             transform, 
                             animalStag.animalData.name, 
                             timeLimit, 
-                            bonusPoints
+                            bonusPoints,
+                            animalStag
                         );
                     }
                 }

@@ -54,7 +54,10 @@ public class Stag : MonoBehaviour
     {
         if (player == null || !canWalk) return;
 
-        CheckForThreats();
+        if(currentState != AnimalState.Trapped && currentState != AnimalState.Injured)
+        {
+            CheckForThreats();
+        }
 
         switch (currentState)
         {
@@ -90,7 +93,7 @@ public class Stag : MonoBehaviour
 
     private void HandleInjuredState()
     {
-        Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
+        //Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
         bloodSpat.SetActive(true);
         TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200, this);
 

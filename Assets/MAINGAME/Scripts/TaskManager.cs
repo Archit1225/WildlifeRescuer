@@ -72,7 +72,7 @@ public class TaskManager : MonoBehaviour
         newTask.waypointInstance = markerObj;
 
         currentTasks.Add(newTask);
-        Debug.Log($"New Task: {name}. Get there fast!");
+        //Debug.Log($"New Task: {name}. Get there fast!");
 
         return newTask;
     }
@@ -110,9 +110,9 @@ public class TaskManager : MonoBehaviour
 
     private void FailTask(ActiveTask task)
     {
-        Debug.Log($"Task {task.taskName} time expired! Penalty applied.");
+        Debug.Log($"Task {task.taskName} time expired! Animal lost, but no points deducted.");
 
-        GameScoreData.saveScore = Mathf.Max(0, GameScoreData.saveScore - 50);
+        // Point penalty has been removed.
 
         if (task.stagReference != null)
         {

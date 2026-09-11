@@ -3,7 +3,67 @@ guid: f25e62b0105c4f243a0525cb72524b28
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cartoon_Ground
+    second: {fileID: 2100000, guid: 98fbce09eb33e76499785d993a9c3661, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cartoon_Water
+    second: {fileID: 2100000, guid: df8bb6866f1ec7b489cd77be2fb50a87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves.002
+    second: {fileID: 2100000, guid: adcce789ed947784c983e9b233142a0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 8d88b46a3fd7928419ba118361e2ebc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: e3b65edb997ec6441beaa038201e6d3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: b8f119cda475a5c4fa2dff9e239ea8aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 3506dc4cd56100249aa94e8c582aeb47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 9bfea7f47ca76ec43bf029d4bda8ba65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood.001
+    second: {fileID: 2100000, guid: 757eed8668db9154bbbbcac9c880c3fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Light
+    second: {fileID: 2100000, guid: 6600ee275680c5843be8451321a31319, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Light.001
+    second: {fileID: 2100000, guid: 50674daab9b786244ac505ccf02dadb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: e918713b864be284eb827b1640cbeef8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

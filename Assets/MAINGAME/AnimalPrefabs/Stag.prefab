@@ -248,7 +248,6 @@ GameObject:
   - component: {fileID: 8600764752389718721}
   - component: {fileID: 4893577023640775411}
   - component: {fileID: 4052071073035247904}
-  - component: {fileID: 1753205539879930477}
   m_Layer: 0
   m_Name: Stag
   m_TagString: Animal
@@ -294,7 +293,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   isDynamicallySpawned: 0
   despawnDistance: 45
   raycastSource: {fileID: 2986224561431156795}
@@ -368,33 +367,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.8733302, z: 3.0187798}
   m_Center: {x: 0, y: 0.4451734, z: -0.15596962}
---- !u!54 &1753205539879930477
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920128003817724717}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &926717168747054729
 GameObject:
   m_ObjectHideFlags: 0

@@ -1283,6 +1283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526259630467249836}
   - component: {fileID: 1615462287653896757}
+  - component: {fileID: 3317164259963063354}
   m_Layer: 0
   m_Name: BloodSplat
   m_TagString: Untagged
@@ -1328,6 +1329,27 @@ MonoBehaviour:
   clothTip: 'Step 1: Grab the cloth from your kit to clean all blood splats.'
   sprayTip: 'Step 2: Use the antiseptic spray on all cleaned wounds.'
   bandageTip: 'Step 3: Wrap bandages around all sprayed wounds to finish healing.'
+--- !u!135 &3317164259963063354
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256661350846162474}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.07
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4257630303771445659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2358,6 @@ GameObject:
   - component: {fileID: 4786745355518954577}
   - component: {fileID: 3170412245742894062}
   - component: {fileID: 9129095215316816889}
-  - component: {fileID: 2453532600545881986}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Animal
@@ -2382,7 +2403,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   isDynamicallySpawned: 0
   despawnDistance: 45
   raycastSource: {fileID: 1813191405907642109}
@@ -2456,33 +2477,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.9648137, z: 2.750599}
   m_Center: {x: 0, y: 0.39943165, z: -0.12549019}
---- !u!54 &2453532600545881986
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6607714054368642589}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &6628567762509534071
 GameObject:
   m_ObjectHideFlags: 0
