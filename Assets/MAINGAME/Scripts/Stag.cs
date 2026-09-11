@@ -92,7 +92,7 @@ public class Stag : MonoBehaviour
     {
         Debug.Log("Stag is injured! Waiting for player to apply medical treatment...");
         bloodSpat.SetActive(true);
-        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200);
+        TaskManager.Instance.CreateTask($"Free the {animalData.name}", transform, animalData.name, 180f, 200, this);
 
         if (!navAgent.isStopped)
         {

@@ -5,13 +5,14 @@ using UnityEngine;
 public class ActiveTask
 {
     public string taskName;
-    public Transform targetTrap; // Kept only so the Waypoint UI knows where to point
+    public Transform targetTrap;
     public string associatedSpecies;
     public float timeLimit;
     public float timeRemaining;
     public int maxBonusPoints;
     public int basePoints = 100;
     public GameObject waypointInstance;
+    public Stag stagReference; 
 }
 
 public class TaskManager : MonoBehaviour
@@ -52,7 +53,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
-    public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints)
+    public ActiveTask CreateTask(string name, Transform target, string speciesName, float timeAllowed, int bonusPoints, Stag linkedStag)
     {
         ActiveTask newTask = new ActiveTask
         {
@@ -61,7 +62,8 @@ public class TaskManager : MonoBehaviour
             associatedSpecies = speciesName,
             timeLimit = timeAllowed,
             timeRemaining = timeAllowed,
-            maxBonusPoints = bonusPoints
+            maxBonusPoints = bonusPoints,
+            stagReference = linkedStag 
         };
 
         GameObject markerObj = Instantiate(waypointPrefab, waypointCanvas);
@@ -93,10 +95,6 @@ public class TaskManager : MonoBehaviour
             Debug.Log($"Task Completed! Earned: {totalPointsEarned} save points.");
             CleanupTask(taskToComplete);
         }
-        else
-        {
-            Debug.LogWarning("Attempted to complete a task that doesn't exist or was already cleared.");
-        }
     }
 
     public void CompleteTreatment(string speciesName, int pointsEarned)
@@ -114,8 +112,12 @@ public class TaskManager : MonoBehaviour
     {
         Debug.Log($"Task {task.taskName} time expired! Penalty applied.");
 
-        // Clamped using Mathf.Max so saveScore can never drop below 0
         GameScoreData.saveScore = Mathf.Max(0, GameScoreData.saveScore - 50);
+
+        if (task.stagReference != null)
+        {
+            Destroy(task.stagReference.gameObject);
+        }
 
         CleanupTask(task);
     }
