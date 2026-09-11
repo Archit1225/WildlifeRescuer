@@ -105,7 +105,7 @@ public class DayNightCycle : MonoBehaviour
 
     private void UpdateFog()
     {
-        RenderSettings.fogColor = fogColorGradient.Evaluate(timeOfDay);
+        RenderSettings.fogColor = skyboxColorGradient.Evaluate(timeOfDay);
     }
 
     private void TriggerEndOfDay()

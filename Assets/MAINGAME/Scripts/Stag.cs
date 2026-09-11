@@ -182,7 +182,7 @@ public class Stag : MonoBehaviour
 
             if (angleToPlayer <= animalData.visualConeAngle / 2f)
             {
-                if (!Physics.Raycast(raycastSource.position, directionToPlayer, animalData.raycastLength, obstacleLayer))
+                //if (!Physics.Raycast(raycastSource.position, directionToPlayer, animalData.raycastLength, obstacleLayer))
                 {
                     if (currentState != AnimalState.Fleeing)
                     {
