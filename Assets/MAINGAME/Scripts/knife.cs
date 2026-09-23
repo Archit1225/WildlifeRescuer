@@ -10,11 +10,6 @@ public class knife : MonoBehaviour
         {
             Debug.Log("NetTrap Deployed");
             other.GetComponent<MeshRenderer>().material = netAnchor_Det;
-            durability--;
-            if (durability <= 0)
-            {
-                Destroy(gameObject);
-            }
         }
     }
 }
